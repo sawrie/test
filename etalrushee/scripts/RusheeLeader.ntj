@@ -107,7 +107,7 @@ var bugignor = true;
 Include("libs/controlInfo.ntl");
 Include("libs/common/NTColorConverter.ntl");
 
-var rusheepos = 5;
+var rusheepos = 0;
 
 var controlData = new controlInfo();
 
