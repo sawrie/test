@@ -755,6 +755,7 @@ function NTR_GetAmmy()
 {
 	for (i = 0; i < 20; i++){
 		var _ammy = NTC_FindUnit(NTC_UNIT_ITEM, GetLocaleString(2697));
+		if(!_ammy){return FailSafeAmmy();}
 		if (_ammy)
 		break;
 	}						
@@ -773,6 +774,19 @@ function NTR_GetAmmy()
 		}
 	}
 	return false;
+	function FailSafeAmmy(){
+		var _tomb = NTC_FindUnit(NTC_UNIT_OBJECT, GetLocaleString(3317)); 
+		//attempts to get the ammy 5 times after that it continues.
+		for(i = 0; i < 10; i++ && (!_ammy || _ammy.mode != 0 || _ammy.mode != 1 && _ammy.mode != 3 || _ammy.mode != 5)){
+			NTC_PingDelay(1000);
+			Say("Attempting to get ammy");
+			NTM_WalkTo(me.x-1, me.y-6);
+			NTR_OpenAmmy();
+			i++;
+		}
+		if(i >=10){Say("Nothing i do works!");}
+		//need to add code to send to rushee and rusher to end script if it reaches this point
+	}
 }
 function NTR_GetCube()
 {

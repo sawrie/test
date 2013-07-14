@@ -54,7 +54,7 @@ function NTMain()
 	
 	NTA_ClearLevel(true);
 		
-	if(!NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 149, +2, +2)) {
+	if(!NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 149, +6, -8)) {
 		NTC_SendMsgToScript("loader.ntj", "NTM_MoveToPresetUnit()");
 		return;
 	}
@@ -65,7 +65,7 @@ function NTMain()
 	
 	NTC_PingDelay(100);
 	
-	if(!NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 149, +8, +2)) {
+	if(!NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 149, +15, -5)) {
 		NTC_SendMsgToScript("loader.ntj", "NTM_MoveToPresetUnit()");
 		return;
 	}
@@ -81,7 +81,7 @@ function NTMain()
 	}
 	NTC_PingDelay(3000);
 
-	NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 149, +5, +2);
+	NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 149, +6, -2);
 
 	NTM_UsePortal("BluePortal", 40, me.charname);
 
