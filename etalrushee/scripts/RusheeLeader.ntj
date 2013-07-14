@@ -107,6 +107,8 @@ var bugignor = true;
 Include("libs/controlInfo.ntl");
 Include("libs/common/NTColorConverter.ntl");
 
+var rusheepos = 5;
+
 var controlData = new controlInfo();
 
 function NTMain()
@@ -119,6 +121,9 @@ function NTMain()
 	controlData.textDelay = textDelay;
 	controlData.clickDelayRandom = clickDelayRandom;
 	controlData.textDelayRandom = textDelayRandom;
+	
+	NT_File("logs/messagecomands/rushbot-gamestatus.txt", 1, "newgame");
+	
 	while(1)
 	{
 		if(me.ingame)
@@ -199,6 +204,15 @@ function locationAction(location)
 		}
 		//LogPrintSimple(me.account + "MyAccountTest.txt", me.account + " / " + me.charname) // this is to check for 2nd account login
 
+		gameStatus = NT_File("logs/messagecomands/rushbot-gamestatus.txt", 0);
+		if (gameStatus == "rushover")
+		{
+				NT_File("logs/messagecomands/rushbot-gamestatus.txt", 1, "newgame");
+				Delay(1000);
+				controlData.click(controlData.controls.lobby.button.quit);				
+				break;
+		}
+		
 		if(GetTickCount() > nextGameMake)
 		{
 			lastGameFailed = false;
@@ -359,7 +373,7 @@ function locationAction(location)
 
 		for(_time = 0 ; _time < characterScreenTimeout ; _time += 500)
 		{
-			_control = controlData.get(controlData.controls.characterSelect.textBox.characterInfo[me.charloc]);
+			_control = controlData.get(controlData.controls.characterSelect.textBox.characterInfo[rusheepos]);
 			if(_control && _control.GetText() != undefined)
 				break;
 
@@ -370,9 +384,10 @@ function locationAction(location)
 		{
 			Delay(characterSelectDelay);
 
-			controlData.click(controlData.controls.characterSelect.textBox.characters[me.charloc], 0, 0, 1);
-			controlData.click(controlData.controls.characterSelect.textBox.characterInfo[me.charloc], 0, 0, 1);
+			controlData.click(controlData.controls.characterSelect.textBox.characters[rusheepos], 0, 0, 1);
+			controlData.click(controlData.controls.characterSelect.textBox.characterInfo[rusheepos], 0, 0, 1);
 
+			rusheepos++;
 			// reset last game made, so it doesnt make a game immediately
 			inGameAt = 0;
 			setNextGameMake();
