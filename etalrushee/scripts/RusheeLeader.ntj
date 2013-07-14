@@ -24,7 +24,7 @@ var maxNumberOfPlayersss = "8";		//use this to set the maximum number of players
 ///////////////////////////////////////
 var joinChatAfterGame			= true;			 // join chat after leaving a game
 var joinRandomChannel			= false;		 // if this is true, will join a random channel, otherwise it will use the channel below..
-var joinChannelInChat			= "op Etal Rushee Channel";		 // Channel you want your bot to join, leave blank to not join a private channel
+var joinChannelInChat			= "set a channel";		 // Channel you want your bot to join, leave blank to not join a private channel
 
 ///////////////////////////////////////
 //        Message Settings: 		 //		// These controll what your bot sais to the leechers will also send a log incommand to a channel bot
@@ -39,7 +39,7 @@ var chatMessageAfterGame5		= "";	// Optional chat message Line #5 to say after e
 ///////////////////////////////////////		// These will let you send a message with a game name password and time to your leechers
 //      Game Message Settings:       //		// var saygamename must be true for any of these to work
 ///////////////////////////////////////		// You cant NOT have a - in you game name it will bug it out
-var saygamename 			= true;						// Must be true for any of the game message settings to work
+var saygamename 			= false;						// Must be true for any of the game message settings to work
 var nextgamemessage			= "NG is";	// This will come befor your next game name eg "New game is"
 var saypassword 			= true;						// This will togle if the bot says your game pw
 var saytime 				= true;						// This will togle if the bot says how much time till creation
@@ -133,6 +133,7 @@ function NTMain()
 				if(Load("NTBot/NTBotGame.ntj"))
 				{
 					_ingame = true;
+					NT_File("logs/messagecomands/rushbot-leadername.txt", 1, me.account + "/" + me.charname); // write leader name to file					
 					NT_File("logs/messagecomands/"+me.charname+"-nextgame.txt", 1, me.gamename + "/" + me.gamepassword); // for leader to print game/pw to txt	 	
 
 					if(me.playtype > 0)

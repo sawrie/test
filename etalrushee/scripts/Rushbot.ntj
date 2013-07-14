@@ -17,8 +17,8 @@
 // Leader Account settings
 // =============================================================================
 
-var leaderAccountName = "LeaderAccount"; //RusheeLeaders Account
-var leaderName = "LeaderName";	//RusheeLeaders Character Name
+var leaderAccountName = ""; //RusheeLeaders Account
+var leaderName = "";	//RusheeLeaders Character Name
 
 // =============================================================================
 
@@ -48,7 +48,7 @@ var fastJoin = false;				// this has preconfigured delays for easy switching.  G
 // =============================================================================
 // Game password (leave blank if none)
 // =============================================================================
-var gamepassword = "";
+var gamepassword = "xxx";
 
 // =============================================================================
 // UseCDKeyChangeTrick :
@@ -294,6 +294,8 @@ function locationAction(location)
 
         game = '';
 		if(useTextFileJoin) {
+			if (leaderAccountName == "") 
+				NT_RetrieveLeaderName(); // Retrieve leader name from txt file
 			NT_RetrievenextGame(); //read message from txt file and set game and gamepassword vars from that 
 		} 
 		else {
@@ -865,6 +867,18 @@ function NT_RetrievenextGame() { // to retrieve game and pw
 		game = grabLine.substring(0, grabLine.indexOf('/')); //extracting game name from beginning of line to the "/"
 		gamepassword = grabLine.substring(grabLine.indexOf('/') + 1, grabLine.length); //Parse after symbol till end of line.	
 		grabNextGame.Close();	
+	}
+	return;
+}
+
+function NT_RetrieveLeaderName() { // to retrieve leader name
+	var grabLine;
+	var grabLeaderName = FileOpen("logs/messagecomands/rushbot-leadername.txt", 0); // open file in read only
+	if(grabLeaderName){ 		
+		grabLine = grabLeaderName.ReadLine(); //retrieve the line and set the leader name variable according to contents
+		leaderAccountName = grabLine.substring(0, grabLine.indexOf('/')); //extracting leader account name
+		leaderName = grabLine.substring(grabLine.indexOf('/') + 1, grabLine.length);
+		grabLeaderName.Close();	
 	}
 	return;
 }
