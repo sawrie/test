@@ -296,6 +296,7 @@ function locationAction(location)
 		if(useTextFileJoin) {
 			NT_RetrieveLeaderName(); // Retrieve leader name from txt file
 			NT_RetrievenextGame(); //read message from txt file and set game and gamepassword vars from that 
+			NT_File("logs/messagecomands/rushbot-rushername.txt", 1, me.charname); // Write Rusher name to file
 		} 
 		else {
 			if(useFL || useFLCount > 0) {
