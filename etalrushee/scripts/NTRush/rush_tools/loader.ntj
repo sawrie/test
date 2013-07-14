@@ -26,6 +26,9 @@ function NTMain() {
 		}
 	}
 
+	Say("Rush Over!"); // Message to let the rushees know that the game is over
+	NT_File("logs/messagecomands/rushbot-gamestatus.txt", 1, "rushover"); // Let the bot know that he needs to switch char.
+	
 	NTC_SendMsgToScript("NTRushGame.ntj", "end");
 }
 
