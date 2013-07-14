@@ -63,6 +63,11 @@ var i;
 						}
 						NTR_GoEast();
 						break;  
+					
+					case "Rush Over!":
+						NTC_Delay(750);
+				        ExitGame();					
+						break;
                 }
             }
         }
