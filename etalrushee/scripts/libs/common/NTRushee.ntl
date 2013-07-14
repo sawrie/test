@@ -1437,6 +1437,38 @@ function GetLeaderUnit(name){
 	}	
 	return false;
 }
+
+function NTR_RetrieveRusherName() {
+	var leaderName="";
+	leaderName = NT_File("logs/messagecomands/rushbot-rushername.txt", 0);
+	
+	return leaderName;
+}
+
+function NTR_FindRusher() {
+	var count = 0;
+	var _unit;
+	var NTConfig_Leader;
+	do{
+		NTC_Delay(2000);
+		NTConfig_Leader = NTR_RetrieveRusherName();
+		Print(COLOR_8 + "Trying to find Rusher: " + NTConfig_Leader);
+		_unit = GetLeaderUnit(NTConfig_Leader);
+		count ++;
+	} while ((!_unit) && (count < 20));
+	
+	if (count<20)
+	{
+		Print(COLOR_8 + "Rusher found");
+		return NTConfig_Leader;
+	}
+	else
+	{
+		Print(COLOR_8 + "Taking too long to find rusher. Exiting game");
+		ExitGame();
+	}
+}
+
 function NT_GetCloserIntS(unit){ 
 	if(GetDistance(me, unit) > 2)
 		return NTM_MoveTo(unit.areaid, unit.x+1, unit.y);
