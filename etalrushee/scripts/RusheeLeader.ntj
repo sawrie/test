@@ -123,6 +123,7 @@ function NTMain()
 	controlData.textDelayRandom = textDelayRandom;
 	
 	NT_File("logs/messagecomands/rushbot-gamestatus.txt", 1, "newgame");
+	rusheepos = me.charloc; // Use the profile position as staring one.
 	
 	while(1)
 	{
@@ -208,8 +209,9 @@ function locationAction(location)
 		if (gameStatus == "rushover")
 		{
 				NT_File("logs/messagecomands/rushbot-gamestatus.txt", 1, "newgame");
-				Delay(1000);
-				controlData.click(controlData.controls.lobby.button.quit);				
+				Delay(2000);
+				controlData.click(controlData.controls.lobby.button.quit);		
+				Delay(2000);					
 				break;
 		}
 		
@@ -350,7 +352,7 @@ function locationAction(location)
 		controlData.setText(controlData.controls.login.editBox.accountName, me.account);
 
 		sendEventToOOG(D2NT_MGR_LOGIN, location.name, 0);
-
+	
 		locationTimeout(5000, location);
 		break;
 
