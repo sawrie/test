@@ -294,8 +294,7 @@ function locationAction(location)
 
         game = '';
 		if(useTextFileJoin) {
-			if (leaderAccountName == "") 
-				NT_RetrieveLeaderName(); // Retrieve leader name from txt file
+			NT_RetrieveLeaderName(); // Retrieve leader name from txt file
 			NT_RetrievenextGame(); //read message from txt file and set game and gamepassword vars from that 
 		} 
 		else {
