@@ -9,6 +9,8 @@ function NTMain(){
 
 	NTA_Initialize();
 
+	NTConfig_Leader = NTR_FindRusher();
+	
 	RegisterEvent(EVENT_GAMEMSG, chat);
 
 	if(!NTTM_CheckAct(2)){
@@ -150,6 +152,11 @@ function chat(msg, type)
 						NTR_PlaceStaff();
 						NTC_PingDelay(500);
 						NTR_TakePortal();
+						break;
+						
+					case "Rush Over!":
+						NTC_Delay(750);
+				        ExitGame();					
 						break;
 				}
 			}

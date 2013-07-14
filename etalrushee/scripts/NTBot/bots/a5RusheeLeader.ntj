@@ -8,6 +8,9 @@ function NTMain(){
 	NTSI_LoadNIPFiles("NTBot/item_configs");
 
 	NTA_Initialize();
+	
+	NTConfig_Leader = NTR_FindRusher();
+	
 	RegisterEvent(EVENT_GAMEMSG, chat);
 
 	if(!NTTM_CheckAct(5)){
@@ -65,6 +68,11 @@ function chat(msg, type)
 						}
 						NTC_PingDelay(100);
 						break;
+						
+					case "Rush Over!":
+						NTC_Delay(750);
+				        ExitGame();					
+						break;						
 				}
 			}
 		}
