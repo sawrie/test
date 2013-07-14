@@ -1448,14 +1448,24 @@ function NTR_RetrieveRusherName() {
 function NTR_FindRusher() {
 	var count = 0;
 	var _unit;
+	var found = false;
+	
 	var NTConfig_Leader;
+	
 	do{
 		NTC_Delay(2000);
 		NTConfig_Leader = NTR_RetrieveRusherName();
 		Print(COLOR_8 + "Trying to find Rusher: " + NTConfig_Leader);
-		_unit = GetLeaderUnit(NTConfig_Leader);
+		_unit = GetPlayerUnit();
+		do {
+		  if (_unit.name == NTConfig_Leader)
+		  {
+			found = true;
+			break;
+		  }
+		} while (_unit.GetNext());
 		count ++;
-	} while ((!_unit) && (count < 20));
+	} while ((!found) && (count < 20));	
 	
 	if (count<20)
 	{
