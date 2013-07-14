@@ -123,7 +123,6 @@ function NTMain()
 	controlData.textDelayRandom = textDelayRandom;
 	
 	NT_File("logs/messagecomands/rushbot-gamestatus.txt", 1, "newgame");
-	rusheepos = me.charloc; // Use the profile position as staring one.
 	
 	while(1)
 	{
@@ -372,6 +371,10 @@ function locationAction(location)
 		var _time, _control;
 
 		sendEventToOOG(D2NT_MGR_PRINT_STATUS, location.name, 0);
+		
+		rusheepos = NT_File("logs/messagecomands/rushbot-"+ me.account + "-rusheepos.txt", 0);
+		if (!rusheepos)
+			rusheepos = me.charloc;
 
 		for(_time = 0 ; _time < characterScreenTimeout ; _time += 500)
 		{
@@ -388,8 +391,8 @@ function locationAction(location)
 
 			controlData.click(controlData.controls.characterSelect.textBox.characters[rusheepos], 0, 0, 1);
 			controlData.click(controlData.controls.characterSelect.textBox.characterInfo[rusheepos], 0, 0, 1);
-
-			rusheepos++;
+			
+			NT_File("logs/messagecomands/rushbot-"+ me.account + "-rusheepos.txt", 1, ++rusheepos);
 			// reset last game made, so it doesnt make a game immediately
 			inGameAt = 0;
 			setNextGameMake();
