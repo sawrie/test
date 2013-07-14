@@ -1087,19 +1087,35 @@ function NTR_GetTome()
 	}
 	return false;	
 	function FailSafeTome(){
-		//attempts to get the ammy 5 times after that it continues.
+		var altarcount = 0;
+		//attempts to get the tome 3 times after that it continues.
 		for(i = 1; i < 6; i++ && (!_tome || _tome.mode != 0 || _tome.mode != 1 && _tome.mode != 3 || _tome.mode != 5)){
 			NTC_PingDelay(1000);
 			Say("!Attempt # " + i);
-			NTM_WalkTo(me.x-1, me.y-6);
-			NTR_OpenAltar();	
+			NTM_WalkTo(me.x-1, me.y-6);			
+			NTR_OpenAltar();
+			GrabTome();
 			i++;
 		}		
 		if( i >= 5 ){
-			if(me.areaid !== 75){
-				Say("!Nothing I do works!");
-			}
+			Say("!Nothing I do works!");
 		}
+	}
+	function GrabTome(){
+		var _tome = NTC_FindUnit(NTC_UNIT_ITEM, 548);
+		var T = "Tome";
+		if(!_tome){return false;}
+		while(_tome.mode != 0){
+			Print(COLOR_5 + "Looking for the " + T + "...");
+			NTC_PingDelay(100);
+			NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _tome);
+		}
+		NTC_PingDelay(100);
+		if(_tome.mode == 0){
+			Print(COLOR_8 + "Picked up the Tome");
+			NTC_PingDelay(200);
+		}
+		return false;
 	}
 }
 function NTR_GoHarrogath()
