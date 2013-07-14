@@ -1,0 +1,82 @@
+function NTMain(){
+
+	Include("libs/common/NTCommon.ntl");
+	NTC_IncludeLibs();
+	NTC_IncludeConfig("NTBot/char_configs");
+
+	NT_LoadConfig();
+	NTSI_LoadNIPFiles("NTBot/item_configs");
+
+	NTA_Initialize();
+	RegisterEvent(EVENT_GAMEMSG, chat);
+
+	if(!NTTM_CheckAct()){
+		NTC_SendMsgToScript("loader.ntj", "NTTM_CheckAct()");
+		return;
+	}
+
+	if(!NTTM_TownMove("waypoint")){
+		NTC_SendMsgToScript("loader.ntj", "NTTM_TownMove()");
+		return;
+	}
+
+	if(!NTM_TakeWaypoint(75)){
+		NTC_SendMsgToScript("loader.ntj", "NTM_TakeWaypoint()");
+		return;
+	}
+
+	NTR_CheckLocation();
+	
+	while(1){
+		if(me.areaid == 75){NTR_Heal();}
+		if(me.hp < 1){NTR_Death();}		
+		NTC_Delay(250);
+	}
+					
+}
+
+function chat(msg, type)
+{
+	if(type == 0){
+		var _split = msg.split(":");
+		if(_split.length >= 1 && _split[1] != undefined){
+			var _sender = _split[0].substring(3, _split[0].length - 3);
+			var _msg = _split[1].substring(1);
+			if(_sender == NTConfig_Leader){
+				switch(_msg){
+					case "Council up!" :
+						NTC_Delay(100);
+						if(me.areaid == 75){
+							NTM_UsePortal("BluePortal", 83, NTConfig_Leader);
+						}
+						break;
+
+					case "Council is dead!" :
+						NTC_Delay(100);
+						NTR_TakePortal();
+						NTC_PingDelay(500);
+						NTR_GoCain();
+						break;
+
+					case "Mephisto up!" :
+						NTC_Delay(100);
+						if(me.areaid == 75){
+							NTM_UsePortal("BluePortal", 102, NTConfig_Leader);
+						}
+						break;
+
+					case "Mephisto is dead!" :
+						if(me.areaid == 102){
+							NTC_Delay(100);
+							NTM_MoveTo(me.areaid, 17590, 8068);
+							NTC_Delay(1500);
+							if(NTM_TakeUnit(NTC_UNIT_OBJECT, 342))
+							NTC_Delay(1500);
+							NTC_SendMsgToScript("NTBotGame.ntj", "SCRIPT_END");
+						}
+						break;
+				}
+			}
+		}
+	}
+}

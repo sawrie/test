@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------
+----------STEPS-TO-SETUP-RUSHEE/RUSHER-----------------------------------------
+-------------------------------------------------------------------------------
+---------------RUHSEELEADER-SETUP----------------------------------------------
+-------------------------------------------------------------------------------
+
+1. Open scripts/NTBot/char_configs
+
+2. Copy the Config file of your Rushees character type(if you're rushing a druid copy NTConfig_Druid, Rename to NTConfig_Druid_CHARACTERNAME).
+
+3. Open the Character file you just Renamed and find ---- NTConfig_Leader = "config me";
+
+4. REPLACE "config me" with the Rusher's name. Spelled EXACTLY
+
+5. Go back to the scripts folder(where the EtalManager is) open RusheeLeader.ntj
+
+6. Change anything you feel you need to(join channel, channel name).
+
+7. Remember to save all changes and move on to Rusher-Setup.
+
+-------------------------------------------------------------------------------
+-------------RUSHER-SETUP------------------------------------------------------
+-------------------------------------------------------------------------------
+
+1. Open scripts/NTRush/rush_configs
+
+2. Copy the Config file of your Rushers character type(if you're rushing a druid copy NTConfig_Druid, Rename to NTConfig_Druid_CHARACTERNAME).
+
+3. Open the Character file you just Renamed and set the rushbots you want to run.
+
+4. Find this line  --  NTConfig_AttackSkill[0] = 0; 
+
+4.1 Set all these to the skills you'll be using.
+
+5. Go back to the scripts folder(where the EtalManager is) open Rushbot.ntj
+
+6. Find var leaderAccountName = ""; set this to the RusheeLeader's account name Spelled EXACTLY
+
+7. Find var leaderName = ""; set this to the RusheeLeader's Character name Spelled EXACTLY
+
+8. Remember to save all changes and move on to EtalManager-Setup.
+
+-------------------------------------------------------------------------------
+-------------RUSHEELEECHER-SETUP-----------------------------------------------
+-------------------------------------------------------------------------------
+
+1. Open scripts/NTBot/char_configs
+
+2. Copy the Config file of your Rushees character type(if you're rushing a druid copy NTConfig_Druid, Rename to NTConfig_Druid_CHARACTERNAME).
+
+3. Open the Character file you just Renamed and find ---- NTConfig_Leader = "config me";
+
+4. REPLACE "config me" with the characters name you inted to be the rusher.
+
+5. Go back to the scripts folder(where the EtalManager is) open RusheeLeecher.ntj
+
+6. Find var leaderAccountName = ""; set this to the RusheeLeader's account name Spelled EXACTLY
+
+7. Find var leaderName = "";set this to the RusheeLeader's Character name Spelled EXACTLY
+
+8. Remember to save all changes and move on to EtalManager-Setup.
+
+-------------------------------------------------------------------------------
+-------------ETALMANAGER-SETUP-------------------------------------------------
+----------------RUSHEELeader---------------------------------------------------
+-------------------------------------------------------------------------------
+
+1. Choose RusheeLeader.ntj as the Entry Point/Starter File
+
+2. Find Game Name and Game PW, Uncheck these
+
+3. Set the Game Name to your preference
+
+4. Set the Game PW to your preference
+
+-------------------------------------------------------------------------------
+-------------ETALMANAGER-SETUP-------------------------------------------------
+---------------RUSHEELEECHER---------------------------------------------------
+-------------------------------------------------------------------------------
+
+1. Choose RusheeLeecher.ntj as the Entry Point/Starter File
+
+-------------------------------------------------------------------------------
+-------------ETALMANAGER-SETUP-------------------------------------------------
+------------------RUSHER-------------------------------------------------------
+-------------------------------------------------------------------------------
+
+1. Choose RushBot.ntj as the Entry Point/Starter File
+
+-------------------------------------------------------------------------------
+-----------REMEMBER-TO-SAVE-YOUR-PROFILES!-------------------------------------
+-------------------------------------------------------------------------------
