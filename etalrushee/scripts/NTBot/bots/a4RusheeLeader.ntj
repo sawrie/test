@@ -82,7 +82,7 @@ function chat(msg, type)
 
 					case "Izzy dead!" :
 						NTC_Delay(100);
-						if(me.areaid == 105){
+						if(me.areaid == 105 && me.mode != 17){
 							NTC_PingDelay(500);
 							NTR_TakePortal();
 							NTC_PingDelay(500);
@@ -101,10 +101,12 @@ function chat(msg, type)
 						break;
 
 					case "Diablo is dead!" :
-						NTC_Delay(100);
-						NTR_TakePortal();
-						NTC_PingDelay(500);
-						NTR_GoTyrael();
+						if(me.areaid == 108 && me.mode != 17){
+							NTC_Delay(100);
+							NTR_TakePortal();
+							NTC_PingDelay(500);
+							NTR_GoTyrael();
+						}
 						break;
 						
 					case "Rush Over!":

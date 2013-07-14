@@ -59,7 +59,7 @@ var i;
 						break;
 
                     case "Andariel is dead!" :
-						if(me.areaid == 37){
+						if(me.areaid == 37 && me.mode != 17){
 							NTC_Delay(200);
 							NTR_TakePortal();
 						}
