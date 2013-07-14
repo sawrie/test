@@ -68,7 +68,7 @@ var i;
 					
 					case "Rush Over!":
 						NTC_Delay(750);
-				        ExitGame();					
+						NTC_SendMsgToScript("NTBotGame.ntj", "SCRIPT_END");
 						break;
                 }
             }
