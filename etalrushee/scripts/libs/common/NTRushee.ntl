@@ -1497,19 +1497,18 @@ function NTR_RetrieveRusherName() {
 function NTR_FindRusher() {
 	var count = 0;
 	var _unit;
-	var found = false;
-	
-	//var NTConfig_Leader; // I don't think we need to variate this since it's a global config variable.
+	var found = false;	
+	var _rusher; 
 	
 	do{
-		NTC_Delay(2000);
-		NTConfig_Leader = NTR_RetrieveRusherName();
+                NTC_Delay(2000);
+		_rusher = NTR_RetrieveRusherName();
 		if(me.mode != 17){ //added support if rushee dies keeps from spaming while dead
-			Print(COLOR_8 + "Trying to find Rusher: " + NTConfig_Leader);
+			Print(COLOR_8 + "Trying to find Rusher: " + _rusher);
 		}
 		_unit = GetPlayerUnit();
 		do {
-		  if (_unit.name == NTConfig_Leader)
+		  if (_unit.name == _rusher)
 		  {
 			found = true;
 			break;
@@ -1518,19 +1517,19 @@ function NTR_FindRusher() {
 		count ++;
 	} while ((!found) && (count < 20));	
 	
-	if (count<20)
-	{
+	if (count<20) {
 		if(me.mode != 17){ //added support if rushee dies keeps from spaming while dead
 			Print(COLOR_8 + "Rusher found");
 		}
-		return NTConfig_Leader;
+		return _rusher;
 	}
-	else
-	{
+	else {
 		Print(COLOR_8 + "Taking too long to find rusher. Exiting game");
 		ExitGame();
 	}
 }
+
+
 
 function NT_GetCloserIntS(unit){ 
 	if(GetDistance(me, unit) > 2)
