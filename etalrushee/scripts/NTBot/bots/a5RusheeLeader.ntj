@@ -62,7 +62,7 @@ function chat(msg, type)
 					
 					case "Shenk is dead!" :
 						NTC_Delay(100);
-						if(me.areaid == 110){
+						if(me.areaid == 110 && me.mode != 17){
 							NTC_PingDelay(500);
 							NTR_TakePortal();
 						}

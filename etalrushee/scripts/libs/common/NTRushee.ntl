@@ -34,13 +34,13 @@ function NTR_GoRushee(area)
 			NTC_PingDelay(300);
 			Say(_msg);
 			NTC_PingDelay(3500);			
-			while(_player.areaid === area && _player.mode != 17){
-				TelePlayer();
-				NTM_MakeTP();
-				NTC_PingDelay(300);
-				Say(_msg);
-				NTC_PingDelay(3500);
-			}
+			// while(_player.areaid === area && _player.mode != 17){
+				// TelePlayer();
+				// NTM_MakeTP();
+				// NTC_PingDelay(300);
+				// Say(_msg);
+				// NTC_PingDelay(3500);
+			// }
 		}
 		break;
 	}
@@ -166,6 +166,9 @@ var i = .85;
 function NTR_Death(area)
 {	
 	var _area = me.areaid;
+	
+	NTR_FindRusher();
+	
 	if(me.areaid == 8){
 		_area = "Den of Evil";
 	}
@@ -779,7 +782,7 @@ function NTR_GetAmmy()
 		//attempts to get the ammy 5 times after that it continues.
 		for(i = 0; i < 10; i++ && (!_ammy || _ammy.mode != 0 || _ammy.mode != 1 && _ammy.mode != 3 || _ammy.mode != 5)){
 			NTC_PingDelay(1000);
-			Say("Attempting to get ammy");
+			Say("!Attempting to get ammy");
 			NTM_WalkTo(me.x-1, me.y-6);
 			NTR_OpenAmmy();
 			i++;
@@ -1063,6 +1066,7 @@ function NTR_GetTome()
 {	
 	for (i = 0; i < 20; i++){
 	var _tome = NTC_FindUnit(NTC_UNIT_ITEM, 548);
+	if(!_tome){return FailSafeTome();}
 	if (_tome)
 	break;
 	}						
@@ -1081,7 +1085,38 @@ function NTR_GetTome()
 			break;
 		}
 	}
-	return false;
+	return false;	
+	function FailSafeTome(){
+		var altarcount = 0;
+		//attempts to get the tome 3 times after that it continues.
+		for(i = 1; i < 6; i++ && (!_tome || _tome.mode != 0 || _tome.mode != 1 && _tome.mode != 3 || _tome.mode != 5)){
+			NTC_PingDelay(1000);
+			Say("!Attempt # " + i);
+			NTM_WalkTo(me.x-1, me.y-6);			
+			NTR_OpenAltar();
+			GrabTome();
+			i++;
+		}		
+		if( i >= 5 ){
+			Say("!Nothing I do works!");
+		}
+	}
+	function GrabTome(){
+		var _tome = NTC_FindUnit(NTC_UNIT_ITEM, 548);
+		var T = "Tome";
+		if(!_tome){return false;}
+		while(_tome.mode != 0){
+			Print(COLOR_5 + "Looking for the " + T + "...");
+			NTC_PingDelay(100);
+			NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _tome);
+		}
+		NTC_PingDelay(100);
+		if(_tome.mode == 0){
+			Print(COLOR_8 + "Picked up the Tome");
+			NTC_PingDelay(200);
+		}
+		return false;
+	}
 }
 function NTR_GoHarrogath()
 {
@@ -1464,12 +1499,14 @@ function NTR_FindRusher() {
 	var _unit;
 	var found = false;
 	
-	var NTConfig_Leader;
+	//var NTConfig_Leader; // I don't think we need to variate this since it's a global config variable.
 	
 	do{
 		NTC_Delay(2000);
 		NTConfig_Leader = NTR_RetrieveRusherName();
-		Print(COLOR_8 + "Trying to find Rusher: " + NTConfig_Leader);
+		if(me.mode != 17){ //added support if rushee dies keeps from spaming while dead
+			Print(COLOR_8 + "Trying to find Rusher: " + NTConfig_Leader);
+		}
 		_unit = GetPlayerUnit();
 		do {
 		  if (_unit.name == NTConfig_Leader)
@@ -1483,7 +1520,9 @@ function NTR_FindRusher() {
 	
 	if (count<20)
 	{
-		Print(COLOR_8 + "Rusher found");
+		if(me.mode != 17){ //added support if rushee dies keeps from spaming while dead
+			Print(COLOR_8 + "Rusher found");
+		}
 		return NTConfig_Leader;
 	}
 	else

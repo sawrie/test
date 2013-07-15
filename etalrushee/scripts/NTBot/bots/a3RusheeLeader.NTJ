@@ -75,10 +75,12 @@ function chat(msg, type)
 						break;
 
 					case "Council is dead!" :
-						NTC_Delay(100);
-						NTR_TakePortal();
-						NTC_PingDelay(500);
-						NTR_GoCain();
+						if(me.mode != 17){
+							NTC_Delay(100);
+							NTR_TakePortal();
+							NTC_PingDelay(500);
+							NTR_GoCain();
+						}
 						break;
 
 					case "Mephisto up!" :
@@ -89,7 +91,7 @@ function chat(msg, type)
 						break;
 
 					case "Mephisto is dead!" :
-						if(me.areaid == 102){
+						if(me.areaid == 102 && me.mode != 17){
 							NTC_Delay(100);
 							NTM_MoveTo(me.areaid, 17590, 8068);
 							NTC_Delay(1500);

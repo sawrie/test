@@ -43,7 +43,7 @@ function NTMain()
 
 	NTSI_PickItems();
 
-	if(!NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 193)) {
+	if(!NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 193,+2, -6)) {
 		NTC_SendMsgToScript("loader.ntj", "NTM_MoveToPresetUnit()");
 		return;
 	}

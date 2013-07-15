@@ -11,7 +11,7 @@ function NT_LoadConfig()
 	
 	NTConfig_RushScript = [
 		//"Cain",		//is not supported with rushees
-		"DenofEvil",
+		//"DenofEvil",
 		"Andy",
 		"Radament",
 		"Cube",
@@ -26,13 +26,12 @@ function NT_LoadConfig()
 		//"Hephasto",
 		"Diablo",
 		"Shenk",
-		"Anya",
-		"Ancients",		//is not supported with rushees
-		"Baal",			//is not supported with rushees
-		"Waypoints"		//is not supported with rushees
+		//"Anya",
+		//"Ancients",		//is not supported with rushees
+		//"Baal",			//is not supported with rushees
+		//"Waypoints"		//is not supported with rushees
 	];
 
-	NTConfig_TpHarem = true;
 	NTConfig_KillCouncils = false;
 	NTConfig_ClearCS = false;	
 	NTConfig_CSDodge = false;

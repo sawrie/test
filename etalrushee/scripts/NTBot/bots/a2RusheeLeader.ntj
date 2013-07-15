@@ -49,7 +49,7 @@ function chat(msg, type)
 						}
 						break;
 					case "Radament dead!" :
-						if(me.areaid == 49){
+						if(me.areaid == 49 && me.mode != 17){
 							NTR_TakePortal();
 						}
 						break;
@@ -121,7 +121,7 @@ function chat(msg, type)
 						break;
 
 					case "Summoner is dead!" :
-						if(me.areaid == 74){
+						if(me.areaid == 74 && me.mode != 17){
 							NTC_PingDelay(200);
 							NTR_TakePortal();
 							NTC_PingDelay(600);
