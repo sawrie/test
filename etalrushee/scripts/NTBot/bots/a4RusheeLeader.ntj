@@ -111,9 +111,8 @@ function chat(msg, type)
 						break;
 						
 					case "Rush Over!":
-						NTC_Delay(750);
-						NTR_IncrementRusheePos();
-				        NTC_SendMsgToScript("NTBotGame.ntj", "SCRIPT_END");					
+						NTC_Delay(750);						
+				        NTC_SendMsgToScript("NTBotGame.ntj", "QuitGame");					
 						break;							
 				}
 			}
