@@ -5,6 +5,39 @@ Any code not written by myself is listed in the credits in my thread.
 
 You can find any additional information @ www.projectetal.com/forums/index.php?threads/automated-rushee-release-v1.11071
 */
+
+var lifeChunked = false;
+function NTR_CoverRushee(area)
+{	
+	area = me.areaid;
+	var _player = GetPlayerUnit();
+	
+	while(_player.GetNext()){
+		if(_player.name !== me.name && _player.areaid === area){
+			Print(COLOR_2 + "Teleporting to " + _player.name);
+			TelePlayer();
+		}
+		break;
+	}
+	return false;
+	function TelePlayer(){	
+	
+	var _leaderUnit = GetLeaderUnit(_player.name);
+	
+		if(GetDistance(me, _leaderUnit) < 2){
+			NT_GetCloserIntS(_leaderUnit);
+			NTM_MoveTo(_player.areaid,_player.x+1,_player.y, 0);
+			return NTA_ClearPosition(15);
+		}
+		else{
+			if(GetDistance(me, _leaderUnit) <= GetDistance(me, _leaderUnit) || GetDistance(me, _leaderUnit) >= GetDistance(me, _leaderUnit)){
+				NT_GetCloserIntS(_leaderUnit);
+				return NTA_ClearPosition(15);
+			}
+		}
+		return false;
+	}
+}
 function NTR_GoRushee(area)
 {	
 	area = me.areaid;
@@ -33,14 +66,7 @@ function NTR_GoRushee(area)
 			NTM_MakeTP();
 			NTC_PingDelay(300);
 			Say(_msg);
-			NTC_PingDelay(3500);			
-			// while(_player.areaid === area && _player.mode != 17){
-				// TelePlayer();
-				// NTM_MakeTP();
-				// NTC_PingDelay(300);
-				// Say(_msg);
-				// NTC_PingDelay(3500);
-			// }
+			NTC_PingDelay(3500);
 		}
 		break;
 	}
@@ -60,6 +86,19 @@ function NTR_GoRushee(area)
 		}
 		return false;
 	}
+}
+function NTR_HPCheck()
+{
+	//Going to rewrite this to be in a loop after each lifeChunked set CurrentHP so no spam until lifeChunked again
+	if(!NTC_InTown() && me.hp < me.hpmax && !lifeChunked){		
+		lifeChunked = true;
+		NTC_Delay(200);
+		Say("I Need An Adult!");
+		NTC_Delay(200);
+		Say("I Need An Adult!");
+		return lifeChunked;
+	}
+	
 }
 function NTR_Heal()
 { 
@@ -796,6 +835,7 @@ function NTR_GetCube()
 	var _item = NTC_FindUnit(NTC_UNIT_ITEM, 549);
 	var _havecube = me.GetItems(549);
 	var _cube = "Horadric Cube";
+	if(!_item){return false;}
 	while(_item.mode != 0 && _havecube.itemloc != 0){	
 		Print(COLOR_5 + "Looking for " + _cube + "...");
 		NTR_GrabQuestItem();
@@ -1201,7 +1241,7 @@ function NTR_SmashNdatShit()
 	if(me.areaid == 107){
 		var _forge = NTC_FindUnit(NTC_UNIT_OBJECT, GetLocaleString(3318));
 		if(!_forge){
-			return;
+			return false;
 		}
 		if(_forge){
 			if(GetDistance(me, _forge) > 5){
@@ -1312,7 +1352,9 @@ function NTR_ClearRushee(area)
 				NTM_MoveTo(_player.areaid,_player.x+1,_player.y, 0);
 			}
 			else{
-				NT_GetCloserIntS(_leaderUnit);
+				if(GetDistance(me, _leaderUnit) <= GetDistance(me, _leaderUnit) || GetDistance(me, _leaderUnit) >= GetDistance(me, _leaderUnit)){
+					return NT_GetCloserIntS(_leaderUnit);
+				}
 			}
 			return NTA_ClearPosition(10);
 		}
