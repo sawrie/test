@@ -58,7 +58,7 @@ function chat(msg, type)
 			if(_sender == rusheeName){
 				switch(_msg){
 					case "I Need An Adult!" :
-						Print(COLOR_2 + "Clearing Rushee");
+						Print(COLOR_3 + "RHPWatch Activated!");
 						NTR_CoverRushee();
 						break;
 				}
