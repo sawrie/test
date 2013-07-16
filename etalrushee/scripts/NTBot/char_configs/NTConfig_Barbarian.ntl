@@ -32,10 +32,6 @@ function NT_LoadConfig()
 	NTConfig_LeechExitDelay = 500;						// Delay before leecher exits game after leader in milliseconds.  Use this to stagger leechers exit times to avoid crashes.
 
 	//------------------------------------------------------------------------------
-	//		RusheeStarter 
-	//------------------------------------------------------------------------------
-
-	//------------------------------------------------------------------------------
 	//		RusheeLeader -- There is only One RusheeLeader
 	//------------------------------------------------------------------------------
 
@@ -44,17 +40,6 @@ function NT_LoadConfig()
 	NTConfig_Script.push("a3RusheeLeader.ntj");
 	NTConfig_Script.push("a4RusheeLeader.ntj");
 	NTConfig_Script.push("a5RusheeLeader.ntj");
-
-	//------------------------------------------------------------------------------
-	//		RusheeLeecher -- These are Additional rushee's
-	//------------------------------------------------------------------------------
-
-	//NTConfig_Script.push("a1RusheeLeecher.ntj");
-	//NTConfig_Script.push("a2RusheeLeecher.ntj");
-	//NTConfig_Script.push("a3RusheeLeecher.ntj");
-	//NTConfig_Script.push("a4RusheeLeecher.ntj");
-	//NTConfig_Script.push("a5RusheeLeecher.ntj");
-
 
 	//------------------------------------------------------------------------------
 	// Speed Settings
