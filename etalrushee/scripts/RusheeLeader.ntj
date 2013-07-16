@@ -22,7 +22,7 @@ var maxNumberOfPlayersss = "8";		//use this to set the maximum number of players
 ///////////////////////////////////////
 //        Channel Settings: 		 //		/ /These controll what if any channel you join
 ///////////////////////////////////////
-var joinChatAfterGame			= true;			 // join chat after leaving a game
+var joinChatAfterGame			= false;			 // join chat after leaving a game
 var joinRandomChannel			= false;		 // if this is true, will join a random channel, otherwise it will use the channel below..
 var joinChannelInChat			= "set a channel";		 // Channel you want your bot to join, leave blank to not join a private channel
 
@@ -138,6 +138,7 @@ function NTMain()
 				if(Load("NTBot/NTBotGame.ntj"))
 				{
 					_ingame = true;
+					NT_File("logs/messagecomands/rushbot-rushee.txt", 1, me.charname); // write leader name to file			
 					NT_File("logs/messagecomands/rushbot-leadername.txt", 1, me.account + "/" + me.charname); // write leader name to file					
 					NT_File("logs/messagecomands/"+me.charname+"-nextgame.txt", 1, me.gamename + "/" + me.gamepassword); // for leader to print game/pw to txt	 	
 
