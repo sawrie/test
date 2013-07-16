@@ -7,6 +7,7 @@ You can find any additional information @ www.projectetal.com/forums/index.php?t
 */
 
 var lifeChunked = false;
+
 function NTR_CoverRushee(area)
 {	
 	area = me.areaid;
@@ -94,7 +95,9 @@ function NTR_HPCheck()
 		lifeChunked = true;
 		NTC_Delay(200);
 		Say("I Need An Adult!");
-		NTC_Delay(200);
+		NTC_Delay(500);
+		Say("I Need An Adult!");
+		NTC_Delay(1000);
 		Say("I Need An Adult!");
 		return lifeChunked;
 	}
@@ -987,14 +990,23 @@ function NTR_MoveStaff()
 	for(i = 0 ; i < _horadricstaff.length ; i++){
 		if(_horadricstaff[i].itemloc == 3){
 			Print(COLOR_1 + "Staff in cube");
+			
 			Print(COLOR_8 + "Moving Staff out of cube!");
+			
 			NTC_PingDelay(1000);
+			
 			SetUIState(0x01, true);  		
+			
 			NTCU_OpenCubeInt(cube[0]);
+			
 			NTC_Delay(300);
+			
 			NTR_MoveStaffToInventoryInt(_horadricstaff[0]);
+			
 			NTCU_CloseCubeInt(cube[0]);
+			
 			me.Cancel(1);
+			
 			if(_horadricstaff.length > 0 && _horadricstaff[0].itemloc == 0)
 			Print(COLOR_5 + "Staff in inventory!");
 			return true;
@@ -1297,45 +1309,12 @@ function NTR_Hammer()
 }
 function NTR_ClearSpot(range,pickit,delay)
 {
-	if(me.mode != 17){
-		NTR_ClearRushee();
-		NTC_Delay(delay);//wait for monsters to draw near
-		NTA_ClearPosition(range, pickit);
-	}
-	if(me.mode != 17){
-		NTR_ClearRushee();
-		NTC_Delay(delay);//wait for monsters to draw near
-		NTA_ClearPosition(range, pickit);
-	}
-	if(me.mode != 17){
-		NTR_ClearRushee();
-		NTC_Delay(delay);//wait for monsters to draw near
-		NTA_ClearPosition(range, pickit);
-	}
-	if(me.mode != 17){
-		NTR_ClearRushee();
-		NTC_Delay(delay);//wait for monsters to draw near
-		NTA_ClearPosition(range, pickit);
-	}
-	if(me.mode != 17){
-		NTR_ClearRushee();
-		NTC_Delay(delay);//wait for monsters to draw near
-		NTA_ClearPosition(range, pickit);
-	}
-	if(me.mode != 17){
-		NTR_ClearRushee();
-		NTC_Delay(delay);//wait for monsters to draw near
-		NTA_ClearPosition(range, pickit);
-	}
-	if(me.mode != 17){
-		NTR_ClearRushee();
-		NTC_Delay(delay);//wait for monsters to draw near
-		NTA_ClearPosition(range, pickit);
-	}
-	if(me.mode != 17){
-		NTR_ClearRushee();
-		NTC_Delay(delay);//wait for monsters to draw near
-		NTA_ClearPosition(range, pickit);
+	for (i = 0; i < 20; i++){
+		if ((i % 5) == 0){
+			NTR_ClearRushee();
+			NTC_Delay(delay);//wait for monsters to draw near
+			NTA_ClearPosition(range, pickit);
+		}
 	}
 	return false;
 }
@@ -1350,10 +1329,12 @@ function NTR_ClearRushee(area)
 			if(GetDistance(me, _leaderUnit) < 1){
 				NT_GetCloserIntS(_leaderUnit);
 				NTM_MoveTo(_player.areaid,_player.x+1,_player.y, 0);
+				return NTA_ClearPosition(15);
 			}
 			else{
 				if(GetDistance(me, _leaderUnit) <= GetDistance(me, _leaderUnit) || GetDistance(me, _leaderUnit) >= GetDistance(me, _leaderUnit)){
-					return NT_GetCloserIntS(_leaderUnit);
+					NT_GetCloserIntS(_leaderUnit);
+					return NTA_ClearPosition(15);
 				}
 			}
 			return NTA_ClearPosition(10);
@@ -1570,8 +1551,6 @@ function NTR_FindRusher() {
 		ExitGame();
 	}
 }
-
-
 
 function NT_GetCloserIntS(unit){ 
 	if(GetDistance(me, unit) > 2)
