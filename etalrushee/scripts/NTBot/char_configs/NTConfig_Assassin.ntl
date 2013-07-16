@@ -53,17 +53,6 @@ function NT_LoadConfig()
 	NTConfig_Script.push("a5RusheeLeader.ntj");
 
 	//------------------------------------------------------------------------------
-	//		RusheeLeecher -- These are Additional rushee's
-	//------------------------------------------------------------------------------
-
-	//NTConfig_Script.push("a1RusheeLeecher.ntj");
-	//NTConfig_Script.push("a2RusheeLeecher.ntj");
-	//NTConfig_Script.push("a3RusheeLeecher.ntj");
-	//NTConfig_Script.push("a4RusheeLeecher.ntj");
-	//NTConfig_Script.push("a5RusheeLeecher.ntj");
-
-
-	//------------------------------------------------------------------------------
 	// Speed Settings
 	//------------------------------------------------------------------------------
 	me.maxgametime = 0; 								// Maximum game length in seconds (0 is infinite).
@@ -82,7 +71,7 @@ function NT_LoadConfig()
 	NTConfig_ManaThresh = 30;							// Drink a mana potion if under this percent of mana.
 	NTConfig_ManaRejuvThresh = 0;						// Drink a rejuvenation potion if under this percent of mana. (Will not use mana potions under this %)
 
-	NTConfig_LifeChicken = 20;							// This is your D2NT chicken life percent. If you go below this life total, exit game.
+	NTConfig_LifeChicken = 0;							// This is your D2NT chicken life percent. If you go below this life total, exit game.
 	NTConfig_ManaChicken = 0;							// This is your D2NT chicken mana percent. If you go below this mana total, exit game.
 
 	// These chicken values are optional and can run alongside the traditional D2NT chicken or as a standalone chicken

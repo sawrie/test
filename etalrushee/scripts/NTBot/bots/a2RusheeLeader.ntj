@@ -24,6 +24,7 @@ function NTMain(){
 	NTR_CheckLocation();
 	
 	while(1){
+		NTR_HPCheck();
 		if(me.areaid == 40){NTR_Heal();}
 		if(me.hp < 1){NTR_Death();}		
 		NTC_Delay(250);

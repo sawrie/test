@@ -87,6 +87,7 @@ function NTMain()
 	function Movetocube()
 	{
 		var _cube = NTC_FindUnit(NTC_UNIT_ITEM, 549);
+		if(!_cube){Say("You have the cube man");return false;}
 		if (_cube.mode == 3 || _cube.mode == 5){
 			NTM_MoveTo(me.areaid, _cube.x, _cube.y);
 		}		

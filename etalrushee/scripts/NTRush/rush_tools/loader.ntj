@@ -18,6 +18,7 @@ function NTMain() {
 	if (!finished) {
 		RegisterEvent(EVENT_KEYDOWN, NT_KeyEvents);
 		RegisterEvent(EVENT_SCRIPTMSG, NT_ScriptMsgEvents);
+		Load("NTRush/rush_tools/RHPWatch.ntj"); //loading RHPWatch
 		Load("NTRush/rushbots/" + NTConfig_RushScript[_count] + ".ntj");
 		SetStatusText(Rev + " Rushing " + NTConfig_RushScript[_count]);
 

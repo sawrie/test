@@ -47,17 +47,6 @@ function NT_LoadConfig()
 	NTConfig_Script.push("a5RusheeLeader.ntj");
 
 	//------------------------------------------------------------------------------
-	//		RusheeLeecher -- These are Additional rushee's
-	//------------------------------------------------------------------------------
-
-	//NTConfig_Script.push("a1RusheeLeecher.ntj");
-	//NTConfig_Script.push("a2RusheeLeecher.ntj");
-	//NTConfig_Script.push("a3RusheeLeecher.ntj");
-	//NTConfig_Script.push("a4RusheeLeecher.ntj");
-	//NTConfig_Script.push("a5RusheeLeecher.ntj");
-
-
-	//------------------------------------------------------------------------------
 	// Speed Settings
 	//------------------------------------------------------------------------------
 	me.maxgametime = 0; 								// Maximum game length in seconds (0 is infinite).
