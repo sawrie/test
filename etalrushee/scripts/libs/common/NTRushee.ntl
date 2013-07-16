@@ -1536,3 +1536,21 @@ function NT_GetCloserIntS(unit){
 		return NTM_MoveTo(unit.areaid, unit.x+1, unit.y);
 	return true;
 }
+
+function NTR_RetrieveRusheePos() {
+	var _pos;
+        
+	_pos = NT_File("logs/messagecomands/rushbot-"+ me.account + "-rusheepos.txt", 0);
+	if (!_pos) 
+            _pos = me.charloc;
+        
+	return _pos;
+}
+
+function NTR_IncrementRusheePos() {
+	var _pos;
+        
+	_pos = NTR_RetrieveRusheePos();
+	NT_File("logs/messagecomands/rushbot-"+ me.account + "-rusheepos.txt", 1, ++_pos);        
+}
+
