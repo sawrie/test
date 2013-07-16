@@ -105,6 +105,7 @@ var tempDelay = Random(waitBeforeNextLineChatMin, waitBeforeNextLineChatMax);
 var gameInfo = "";
 var bugignor = true;
 Include("libs/controlInfo.ntl");
+Include("libs/common/NTRushee.ntl");
 Include("libs/common/NTColorConverter.ntl");
 
 var rusheepos = 0;
@@ -372,10 +373,7 @@ function locationAction(location)
 
 		sendEventToOOG(D2NT_MGR_PRINT_STATUS, location.name, 0);
 		
-		rusheepos = NT_File("logs/messagecomands/rushbot-"+ me.account + "-rusheepos.txt", 0);
-		if (!rusheepos)
-			rusheepos = me.charloc;
-
+		rusheepos = NTR_RetrieveRusheePos();
 		for(_time = 0 ; _time < characterScreenTimeout ; _time += 500)
 		{
 			_control = controlData.get(controlData.controls.characterSelect.textBox.characterInfo[rusheepos]);
@@ -392,7 +390,7 @@ function locationAction(location)
 			controlData.click(controlData.controls.characterSelect.textBox.characters[rusheepos], 0, 0, 1);
 			controlData.click(controlData.controls.characterSelect.textBox.characterInfo[rusheepos], 0, 0, 1);
 			
-			NT_File("logs/messagecomands/rushbot-"+ me.account + "-rusheepos.txt", 1, ++rusheepos);
+			NTR_IncrementRusheePos();
 			// reset last game made, so it doesnt make a game immediately
 			inGameAt = 0;
 			setNextGameMake();
