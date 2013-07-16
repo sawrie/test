@@ -69,6 +69,7 @@ var i;
 					
 					case "Rush Over!":
 						NTC_Delay(750);
+						NTR_IncrementRusheePos();
 						NTC_SendMsgToScript("NTBotGame.ntj", "SCRIPT_END");
 						break;
                 }

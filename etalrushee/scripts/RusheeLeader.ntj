@@ -390,8 +390,7 @@ function locationAction(location)
 
 			controlData.click(controlData.controls.characterSelect.textBox.characters[rusheepos], 0, 0, 1);
 			controlData.click(controlData.controls.characterSelect.textBox.characterInfo[rusheepos], 0, 0, 1);
-			
-			NTR_IncrementRusheePos();
+						
 			// reset last game made, so it doesnt make a game immediately
 			inGameAt = 0;
 			setNextGameMake();
