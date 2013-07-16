@@ -180,7 +180,7 @@ function NTMain()
 					Delay(150);
 				}
 				NTC_CancelMenus();
-				Delay(NTConfig_LeechExitDelay);
+				Delay(NTConfig_LeechExitDelay);				
 				ExitGame();
 			}
 
@@ -197,9 +197,12 @@ function NTMain()
 
 				if(SoJElapsedTime >= NTConfig_SoJWaitTime*60)
 					SoJNotify = false;
-			}
+			}					
 			// soj addon end
+			
 		}
+		
+		NTR_IncrementRusheePos(); // For automated rusher bot
 	}
 
 	// Provalone Edit
@@ -420,8 +423,7 @@ function NT_ScriptMsgEvents(msg)
 	{
 	case "QuitGame":
 		NTC_StopScript(NTConfig_Script[CurScriptIndex]);
-		NTC_CancelMenus();
-		NTR_IncrementRusheePos();
+		NTC_CancelMenus();		
 		LastScript = true;
 		break;
 	case "HOSTILE":
