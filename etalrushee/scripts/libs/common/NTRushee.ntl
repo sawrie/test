@@ -15,7 +15,7 @@ function NTR_CoverRushee(area)
 	
 	while(_player.GetNext()){
 		if(_player.name !== me.name && _player.areaid === area){
-			Print(COLOR_2 + "Teleporting to " + _player.name);
+			//Print(COLOR_2 + "Teleporting to " + _player.name);
 			TelePlayer();
 		}
 		break;
@@ -90,12 +90,16 @@ function NTR_GoRushee(area)
 }
 function NTR_HPCheck()
 {
+	var i = .85;
 	//Going to rewrite this to be in a loop after each lifeChunked set CurrentHP so no spam until lifeChunked again
-	if(!NTC_InTown() && me.hp < me.hpmax && !lifeChunked){		
+	//Been trying a few loops and seems they just continually loop since this function is in a loop already
+	if(!NTC_InTown() && me.hp < me.hpmax*i && !lifeChunked){		
 		lifeChunked = true;
 		NTC_Delay(200);
 		Say("I Need An Adult!");
 		NTC_Delay(500);
+		Say("I Need An Adult!");
+		NTC_Delay(1000);
 		Say("I Need An Adult!");
 		NTC_Delay(1000);
 		Say("I Need An Adult!");
@@ -208,8 +212,6 @@ var i = .85;
 function NTR_Death(area)
 {	
 	var _area = me.areaid;
-	
-	NTR_FindRusher();
 	
 	if(me.areaid == 8){
 		_area = "Den of Evil";
@@ -421,7 +423,7 @@ function NTR_Death(area)
 				}
 				break;
 		}
-	}return false;
+	}
 }
 function NTR_OpenQuest()
 {
@@ -779,6 +781,44 @@ function NTR_ReadBook()
 	me.Cancel(1);
 	Print(COLOR_8 + "Skill taught!");
 	if(_readbook.length > 0)
+		return true;
+	else
+		return false;
+	}
+}
+function NTR_UseScrollOfTownPortal()
+{
+	var i;
+	var _usescroll = me.GetItems(529);
+	var returnCheck = false;
+	if(_usescroll.length == 0){
+		Print("Don't have: " + COLOR_17 + "a Scroll of Town Portal");		
+		returnCheck = true;
+	}
+	if(returnCheck){
+		Print(COLOR_17 + "No Scroll in Inventory");
+		return false;
+	}	
+	else if(!returnCheck){
+		SetUIState(0x01, true);
+		if(_usescroll.length > 0 && _usescroll[0]){
+			for(i = 0; i < 5; i++){
+				me.ClickItem(1, _usescroll[0]);		
+				Delay(500);		
+				if(me.itemoncursor)
+				break;
+			}
+		}
+		if(i < 5){
+			for(i = 0; i < 5; i++){
+				me.ClickItem(1, 0, 0, 0);		
+				Delay(500);		
+				if(!me.itemoncursor)
+				break;
+			}
+		}
+	me.Cancel(1);
+	if(_usescroll.length > 0)
 		return true;
 	else
 		return false;
@@ -1483,7 +1523,7 @@ function NTR_LeaveDen()
 	if(me.GetQuest(1, 4) && me.areaid == 8){
 		Print(COLOR_2 + "Den Quest Complete");
 		NTC_PingDelay(300);
-		NTM_MakeTP();
+		NTR_UseScrollOfTownPortal();
 		NTR_TakePortal();
 	}
 	if(me.GetQuest(1, 4) && me.areaid == 1){
