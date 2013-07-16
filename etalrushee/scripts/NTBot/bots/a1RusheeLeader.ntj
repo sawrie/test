@@ -22,6 +22,7 @@ function NTMain()
 	NTR_CheckLocation();
 	
 	while(1){
+		NTR_HPCheck();
 		if(me.areaid == 1){NTR_Heal();}
 		if(me.hp < 1){NTR_Death();}		
 		if(me.GetQuest(6, 12) && me.areaid == 1){NTR_GoEast();}
