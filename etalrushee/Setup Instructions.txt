@@ -4,7 +4,7 @@
 ---------RUHSEELEADER-CHAR-CONFIG-SETUP----------------------------------------
 -------------------------------------------------------------------------------
 
-1. Do Nothing. Just make a full account ready to be rushed.
+1. Do NOT need to edit any Rushee Char configs.
 
 -------------------------------------------------------------------------------
 -------------RUSHER-CHAR-CONFIG-SETUP------------------------------------------
@@ -18,22 +18,27 @@
 
 4. Find this line  --  NTConfig_AttackSkill[0] = 0; 
 
-4.1 Set all these to the skills you'll be using.
+   - Set all these to the skills you'll be using.
 
-8. Remember to save all changes and move on to EtalManager-Setup.
+5. Setup your Inventory and Belt
+
+6. Remember to save all changes and move on to EtalManager-Setup.
 
 -------------------------------------------------------------------------------
 -------------ETALMANAGER-SETUP-------------------------------------------------
 ----------------RUSHEELeader---------------------------------------------------
 -------------------------------------------------------------------------------
+1. Make a new account full of to be rushed characters
 
-1. Choose RusheeLeader.ntj as the Entry Point/Starter File
+2. Set Account Name = ACCOUNT_FROM_STEP_ONE
 
-2. Find Game Name and Game PW, Uncheck these
+3. Choose RusheeLeader.ntj as the Entry Point/Starter File
 
-3. Set the Game Name to your preference
+4. Find Game Name and Game PW, Uncheck these
 
-4. Set the Game PW to your preference
+5. Set the Game Name to your preference
+
+6. Set the Game PW to your preference
 
 -------------------------------------------------------------------------------
 -------------ETALMANAGER-SETUP-------------------------------------------------
