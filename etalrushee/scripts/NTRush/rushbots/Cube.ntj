@@ -72,10 +72,8 @@ function NTMain()
 		NTM_MakeTP();
 
 		Say("Cube up!");
-
-		while(!NTC_IsQuesterIn()) {
-			NTC_TPGuard(30);
-		}
+		
+		NTA_ClearPosition(30);
 
 		NTSI_PickItems();
 
