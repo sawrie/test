@@ -90,22 +90,33 @@ function NTR_GoRushee(area)
 }
 function NTR_HPCheck()
 {
+	var c = .8;
+	var checkHP;
+	var CurrentHP;
 	var i = .85;
-	//Going to rewrite this to be in a loop after each lifeChunked set CurrentHP so no spam until lifeChunked again
-	//Been trying a few loops and seems they just continually loop since this function is in a loop already
-	if(!NTC_InTown() && me.hp < me.hpmax*i && !lifeChunked){		
-		lifeChunked = true;
-		NTC_Delay(200);
-		Say("I Need An Adult!");
-		NTC_Delay(500);
-		Say("I Need An Adult!");
-		NTC_Delay(1000);
-		Say("I Need An Adult!");
-		NTC_Delay(1000);
-		Say("I Need An Adult!");
+	//We spam 5 times with 1 sec intervals -- still want to check if attacked again
+	if(!NTC_InTown() && me.hp < me.hpmax*i && !lifeChunked){
+		for(i = 0; i < 10; i++ && (me.hp < me.hpmax*i && !lifeChunked)){
+			NTC_PingDelay(1000);
+			Say("I Need An Adult!");
+			i++;
+		}
+		if(i >=10){
+			lifeChunked = true;
+			CurrentHP = me.hp;
+			checkHP = parseInt(me.hpmax/100*CurrentHP*c);
+			// Print(COLOR_8 + "Current HP = " + CurrentHP);
+			// Print(COLOR_8 + "Checking if dops below " + checkHP);
+		}
 		return lifeChunked;
+		// if(!NTC_InTown() && me.hp < checkHP && lifeChunked){
+			// for(i = 0; i < 10; i++){
+				// NTC_PingDelay(1000);
+				// Say("I Need An Adult!");
+				// i++;
+			// }
+		// }
 	}
-	
 }
 function NTR_Heal()
 { 
@@ -240,9 +251,9 @@ function NTR_Death(area)
 	if(me.areaid == 110){
 		_area = "Shenk";
 	}			
-	var area = me.areaid;
+	area = me.areaid;
 	if(me.mode == 17 && me.hp < 1){
-		switch(me.areaid){
+		switch(area){
 			case 8 :
 				NTC_CheckPlayer(NTConfig_Leader);
 				if(me.areaid == 8 && _leaderareaid != 8){
@@ -257,6 +268,7 @@ function NTR_Death(area)
 						NTC_CancelOut(1);
 					}
 					NTC_Delay(800);
+					Say("I died I need a sec");
 					NTR_GoAkara();
 				}
 				break;
@@ -274,6 +286,7 @@ function NTR_Death(area)
 						NTC_CancelOut(1);
 					}
 					NTC_Delay(800);
+					Say("I died I need a sec");
 					NTR_GoEast();
 				}
 				break;
@@ -290,20 +303,21 @@ function NTR_Death(area)
 						NTC_CancelOut(1);
 					}
 					NTC_Delay(800);
+					Say("I died I need a sec");
 					NTR_CheckLocation();
-					NTC_Delay(800);
+					// NTC_Delay(800);
 					
-					NTM_UsePortal("BluePortal", 49, NTConfig_Leader);
+					// NTM_UsePortal("BluePortal", 49, NTConfig_Leader);
 						
-					if(me.areaid == 49){
-						NTC_PingDelay(300);
-						NTR_GetBook();
-						NTC_PingDelay(500);
-						NTR_TakePortal();
-						NTC_PingDelay(500);
-						NTR_ReadBook();
-						NTR_GoCain();
-					}
+					// if(me.areaid == 49){
+						// NTC_PingDelay(300);
+						// NTR_GetBook();
+						// NTC_PingDelay(500);
+						// NTR_TakePortal();
+						// NTC_PingDelay(500);
+						// NTR_ReadBook();
+						// NTR_GoCain();
+					// }
 				}
 				break;
 			case 74 :
@@ -320,6 +334,7 @@ function NTR_Death(area)
 						NTC_CancelOut(1);
 					}
 					NTC_Delay(800);
+					Say("I died I need a sec");
 					NTR_CheckLocation();
 					NTC_Delay(1000);
 					NTR_GoCain();
@@ -339,6 +354,7 @@ function NTR_Death(area)
 						NTC_CancelOut(1);
 					}
 					NTC_Delay(800);
+					Say("I died I need a sec");
 					NTR_CheckLocation();
 					NTC_Delay(1000);
 					NTR_GoCain();
@@ -358,6 +374,7 @@ function NTR_Death(area)
 						NTC_CancelOut(1);
 					}
 					NTC_Delay(800);
+					Say("I died I need a sec");
 					NTR_CheckLocation();
 					NTC_Delay(1000);
 					NTM_UsePortal("BluePortal", 102, NTConfig_Leader);
@@ -449,9 +466,8 @@ function NTR_GoAkara()
 				NTC_CancelOut(0);
 			}
 		}
-		NTR_OpenQuest();
 	}
-	return false;
+	return NTR_OpenQuest();
 }
 function NTR_GoEast()
 {
@@ -1385,11 +1401,14 @@ function NTR_ClearRushee(area)
 }
 function NTR_CheckLocation()
 {
-	if(!NTTM_TownMove("portalspot")){
-		NTC_SendMsgToScript("NTBotGame.ntj", "NTTM_TownMove()");
+	if(NTC_InTown()){
+		if(!NTTM_TownMove("portalspot")){
+			NTC_SendMsgToScript("NTBotGame.ntj", "NTTM_TownMove()");
+		}
 	}
-	NTC_CancelOut(0);
-	NTC_PingDelay(100);	
+		NTC_CancelOut(0);
+		NTC_PingDelay(100);	
+		
 	return false;
 }
 function NTR_TakePortal()
@@ -1520,10 +1539,12 @@ function NTR_Den()
 }
 function NTR_LeaveDen()
 {
-	if(me.GetQuest(1, 4) && me.areaid == 8){
+	if(me.GetQuest(1, 4) && me.GetQuest(1, 1) && me.areaid == 8){
 		Print(COLOR_2 + "Den Quest Complete");
 		NTC_PingDelay(300);
-		NTR_UseScrollOfTownPortal();
+		if(!NTR_UseScrollOfTownPortal()){
+			Say("Cant TownPortal");
+		}
 		NTR_TakePortal();
 	}
 	if(me.GetQuest(1, 4) && me.areaid == 1){
@@ -1532,11 +1553,8 @@ function NTR_LeaveDen()
 		NTC_PingDelay(300);
 		NTR_GoAkara();
 	}
-	if(me.GetQuest(1, 12) && me.areaid == 1){
-		NTR_CheckLocation();
-		return true;
-	}		
-	return false;
+	if(me.areaid == 1)
+		return NTR_CheckLocation();
 }
 function GetLeaderUnit(name){
 	var _unit = NTC_FindUnit(NTC_UNIT_PLAYER);	
