@@ -124,25 +124,26 @@ function NT_LoadConfig()
 	//NTConfig_NIPFilePath.push("extreme/craft.nip");
 	//NTConfig_NIPFilePath.push("extreme/key.nip");
 	
-	NTConfig_NIPFilePath.push("Master/Charms.nip");
-	NTConfig_NIPFilePath.push("Master/Crafted.nip");
-	NTConfig_NIPFilePath.push("Master/Cubed.nip");
-	NTConfig_NIPFilePath.push("Master/CustomAdditions.nip");
-	//NTConfig_NIPFilePath.push("Master/FAST.nip");
-	//NTConfig_NIPFilePath.push("Master/Gold Potions Runes Gems Essences Keys Organs.nip");
-	NTConfig_NIPFilePath.push("Master/Magic.nip");
-	NTConfig_NIPFilePath.push("Master/Rare.nip");
-	NTConfig_NIPFilePath.push("Master/Set.nip");
-	NTConfig_NIPFilePath.push("Master/Unid.nip");
-	NTConfig_NIPFilePath.push("Master/Unique.nip");
-	NTConfig_NIPFilePath.push("Master/White.nip");
-	NTConfig_NIPFilePath.push("Master/Runeword.nip");
+	// NTConfig_NIPFilePath.push("Master/Charms.nip");
+	// NTConfig_NIPFilePath.push("Master/Crafted.nip");
+	// NTConfig_NIPFilePath.push("Master/Cubed.nip");
+	// NTConfig_NIPFilePath.push("Master/CustomAdditions.nip");
+	// NTConfig_NIPFilePath.push("Master/FAST.nip");
+	// NTConfig_NIPFilePath.push("Master/Gold Potions Runes Gems Essences Keys Organs.nip");
+	// NTConfig_NIPFilePath.push("Master/Magic.nip");
+	// NTConfig_NIPFilePath.push("Master/Rare.nip");
+	// NTConfig_NIPFilePath.push("Master/Set.nip");
+	// NTConfig_NIPFilePath.push("Master/Unid.nip");
+	// NTConfig_NIPFilePath.push("Master/Unique.nip");
+	// NTConfig_NIPFilePath.push("Master/White.nip");
+	// NTConfig_NIPFilePath.push("Master/Runeword.nip");
 
 	NTConfig_SnagRange = 40;							// Radius to check for dropped items. 40 is a good number here
 
 	//------------------------------------------------------------------------------
 	// General configuration
 	//------------------------------------------------------------------------------
+	NTConfig_IdInField = true;
 	NTConfig_PublicMode = true;						// Enables "Public" features (Partying, Tp'ing etc). (Cannot be true while NTConfig_PartyOnlyLeader is.)
 	NTConfig_CheckCloneDiablo = true;					// Set to true if you want to wait in game after "Diablo Walks the Earth" msg.
 	NTConfig_SoJWaitTime = 5;							// Time in minutes to wait for the next SoJ sale. Set to 0 to disable SoJ notifier.
