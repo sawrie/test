@@ -94,6 +94,10 @@ function NTMain()
 
 	NTSI_PickItems();
 
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
+	
 	Say("Mephisto is dead!");
 
 	if(NTConfig_OpenChest) {

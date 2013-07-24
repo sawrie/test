@@ -69,6 +69,10 @@ function NTMain()
 
 	NTA_ClearPosition(10);
 
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
+	
 	Say("Radament up!");
 
 	while(!NTC_IsQuesterIn()) {				

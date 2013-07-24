@@ -52,6 +52,10 @@ function NTMain()
 	
 	NTSI_PickItems();
 
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
+	
 	NTR_GoRushee();
 
 	NTM_UsePortal("BluePortal", 103, me.charname);

@@ -132,6 +132,9 @@ function NT_OpenSealsInt() {
 	} else {
 		_result = NT_OpenVenomSealInt(2);
 	}
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
 	NTP_DoPrecast(true);
 	return _result;
 }
@@ -197,6 +200,9 @@ function NT_OpenDeSeisSealInt(type) {
 	NTA_KillMonster(GetLocaleString(2852)); // Lord De Seis
 	NTCS_ClearPosition(40, DistanceSort);
 
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
 	return NTM_MoveTo(108, 7800, 5255);
 }
 
@@ -225,6 +231,9 @@ function NT_OpenVenomSealInt(type) {
 	NTA_KillMonster(GetLocaleString(2853)); // Infector of Souls
 	NTCS_ClearPosition(40, DistanceSort);
 	
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
 	if (NTC_PutSkill(124, NTC_HAND_RIGHT)) {
 		NTC_PingDelay(1000);
 	}
@@ -276,6 +285,9 @@ function NT_OpenSealInt(classid) {
 			return true;
 		}
 	}
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
 	return false;
 }
 
@@ -518,6 +530,9 @@ function NTCS_ClearPosition(range, sortFunc, spectype, classid) {
 				attackcount += 1;
 				if (target.mode === 0 || target.mode === 12) {
 					NTSI_FastPick();
+					if(NTConfig_IdInField){
+						NT_FieldID();
+					} 
 				}
 				break;
 			default:

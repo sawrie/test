@@ -54,6 +54,10 @@ function NTMain()
 
 	NTSI_PickItems();		
 
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
+	
 	if(NTM_MoveToPresetUnit(me.areaid, 558)) {
 		NTC_SendMsgToScript("loader.ntj", "NTM_MoveToPresetUnit()");
 		return;
@@ -63,6 +67,10 @@ function NTMain()
 
 	NTSI_PickItems();
 
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
+	
 	_Anya = NTC_FindUnit(NTC_UNIT_OBJECT, 558);
 
 	if(_Anya) {	

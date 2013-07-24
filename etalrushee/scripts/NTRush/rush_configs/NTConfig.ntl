@@ -6,6 +6,7 @@ var NTConfig_RushScript = [];
 var NTConfig_Rusher = "";
 var NTConfig_Bumper = "";
 var NTConfig_RusheeLeader = "";
+var NTConfig_IdInField;
 
 // Class Specific Var's
 	var DebugAttacksInGame;

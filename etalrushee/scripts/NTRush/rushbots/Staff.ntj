@@ -83,6 +83,10 @@ function NTMain()
 
 	NTM_MakeTP(true);
 
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
+	
 	Say("Staff up!");
 	
 	Delay(5000);

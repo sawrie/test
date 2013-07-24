@@ -53,6 +53,9 @@ function NTMain() {
 		}
 		NTA_ClearPosition(20);
 		NTC_PingDelay(200);
+		if(NTConfig_IdInField){
+			NT_FieldID();
+		} 
 	}
 	NTM_MakeTP();
 	Say("Andariel up!");
@@ -77,6 +80,10 @@ function NTMain() {
 
 	NTSI_PickItems();
 
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
+	
 	NTR_GoRushee();
 
 	if (!NTM_MoveTo(me.areaid, 22595, 9617)) {

@@ -65,6 +65,10 @@ function NTMain()
 			NTA_ClearPosition(30);
 
 			NTSI_PickItems();
+			
+			if(NTConfig_IdInField){
+				NT_FieldID();
+			} 
 		}
 
 		Movetocube();

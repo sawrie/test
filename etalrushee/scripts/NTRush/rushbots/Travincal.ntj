@@ -91,6 +91,9 @@ function NTMain()
 
 	NTSI_PickItems();
 	
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
 	NTC_SendMsgToScript("loader.ntj", "end");
 }
 

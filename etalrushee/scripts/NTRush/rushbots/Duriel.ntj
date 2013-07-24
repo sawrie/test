@@ -68,7 +68,11 @@ function NTMain()
 	NTA_ClearPosition(40);
 
 	NTSI_PickItems();
-		
+				
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
+	
 	_orifice = NTC_FindUnit(NTC_UNIT_OBJECT, 152);
 
 	if(_orifice) {

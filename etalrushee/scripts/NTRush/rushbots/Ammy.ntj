@@ -53,7 +53,10 @@ function NTMain()
 	NTA_ClearPosition(30);
 	
 	NTA_ClearLevel(true);
-		
+	
+	if(NTConfig_IdInField){
+		NT_FieldID();
+	} 
 	if(!NTM_MoveToPresetUnit(me.areaid, NTC_UNIT_OBJECT, 149, +6, -8)) {
 		NTC_SendMsgToScript("loader.ntj", "NTM_MoveToPresetUnit()");
 		return;
