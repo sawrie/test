@@ -116,7 +116,7 @@ function Questing(area)
 			}	
 			else if(me.GetQuest(28,0)){
 				NTTM_TownMove("waypoint");
-				NTM_TakeWaypoint(103);
+				NTM_TakeWaypoint(109);
 			}	
 			break;
 		
