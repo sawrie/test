@@ -61,7 +61,7 @@ function NTMain()
 	NTM_UsePortal("BluePortal", 75, me.charname);
 	
 	Print(COLOR_3 + "Waiting for Rushee..");
-	NTC_Delay(8500); //wait for rushee to talk to alkor
+	NTC_Delay(13000); //wait for rushee to talk to alkor
 
 	NTC_SendMsgToScript("loader.ntj", "end");
 }

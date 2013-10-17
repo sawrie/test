@@ -47,11 +47,11 @@ function NTMain()
 	NT_ClearThroneInt();
 
 	NTM_MoveTo(me.areaid, 15112, 5004, 1, true);
-		
-	Say("Throne up!");
-		
+				
 	NTM_MakeTP();
 
+	Say("Throne up!");
+	
 	NTC_PingDelay(1000);
 
 	while(1) {

@@ -201,8 +201,6 @@ function NTMain()
 			// soj addon end
 			
 		}
-		
-		NTR_IncrementRusheePos(); // For automated rusher bot
 	}
 
 	// Provalone Edit
