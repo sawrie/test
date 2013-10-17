@@ -62,13 +62,13 @@ function chat(msg, type)
 						NTR_CoverRushee();
 						break;
 					
-					case "I died I need a sec" :
-						Print(COLOR_3 + "Waiting..");
-						for(i = 0; i < 14; i++){
-							NTC_PingDelay(1000);
-							i++;
-						}
-						break;
+					// case "I died I need a sec" :
+						// Print(COLOR_3 + "Waiting..");
+						// for(i = 0; i < 14; i++){
+							// NTC_PingDelay(1000);
+							// i++;
+						// }
+						// break;
 				}
 			}
 		}
