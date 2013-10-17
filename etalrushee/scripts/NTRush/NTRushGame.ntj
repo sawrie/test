@@ -81,9 +81,9 @@ function GameMsgEvents(msg, type) {
 
 	if (type == 1 && msg.toLowerCase().indexOf("error") != -1) {
 		date = new Date().toLocaleFormat("<%a, %b %d, %H:%M>");
-		logfile = FileOpen("NTRush/logs/" + me.charname + "_errorlog.txt", 2);
+		logfile = FileOpen("logs/" + me.charname + "_errorlog.txt", 2);
 		if (!logfile) {
-			logfile = FileOpen("NTRush/logs/" + me.charname + "_errorlog.txt", 1);
+			logfile = FileOpen("logs/" + me.charname + "_errorlog.txt", 1);
 		}
 
 		logfile.WriteLine(date + " - " + msg);
