@@ -113,7 +113,7 @@ function NT_KeyEvents(keycode)
 					SetStatusText(COLOR_1 + Rev + "    Paused " + NTConfig_Script[CurScriptIndex]);
 				}
 				else {
-					Load("NTBot/bots/" + NTConfig_Script[CurScriptIndex]);
+					Load("NTRush/rush_configs/" + NTConfig_Script[CurScriptIndex]);
 					SetStatusText(Rev + " " + NTConfig_Script[CurScriptIndex]);
 				}
 			}
