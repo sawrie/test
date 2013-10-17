@@ -35,11 +35,7 @@ function NT_LoadConfig()
 	//		RusheeLeader -- There is only One RusheeLeader
 	//------------------------------------------------------------------------------
 
-	NTConfig_Script.push("a1RusheeLeader.ntj");
-	NTConfig_Script.push("a2RusheeLeader.ntj");
-	NTConfig_Script.push("a3RusheeLeader.ntj");
-	NTConfig_Script.push("a4RusheeLeader.ntj");
-	NTConfig_Script.push("a5RusheeLeader.ntj");
+	NTConfig_Script.push("Rushee.ntj");
 
 	//------------------------------------------------------------------------------
 	// Speed Settings
