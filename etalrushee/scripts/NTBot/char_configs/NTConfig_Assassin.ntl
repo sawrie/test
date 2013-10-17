@@ -1,14 +1,3 @@
-var NTConfig_UseTraps;
-var NTConfig_UseFade;
-var NTConfig_UseBOS;
-var NTConfig_UseCloakOfShadows;
-var NTConfig_UseBladeShield;
-var NTConfig_MinTrapRange;
-var NTConfig_MinBossTrapRange;
-var NTConfig_NumTraps;
-var NTConfig_NumBossTrap;
-var NTConfig_UseShadow;
-var NTConfig_Venom;
 function NT_LoadConfig()
 {
 	//-----------------------------------------------------------------------------------------------------
@@ -513,26 +502,9 @@ function NT_LoadConfig()
 	// Class Specific Settings
 	//------------------------------------------------------------------------------
 
-
-
-	NTConfig_UseShadow = 		"Master";			// 0 or "None" = Don't Summon / 1 or "Warrior" = Shadow Warrior / 2 or "Master" = Shadow Master
-	NTConfig_UseCloakOfShadows = false; 			// Set true to use Cloak of Shadows.
-	NTConfig_UseBladeShield = 	false; 				// Set true to use Blade Shield.
-	NTConfig_UseTraps = 		false; 				// Set true to use traps. (You must have AttackSkill[1] & AttackSkill[3] above must not be -1 & cannot be the same as traps set below.)
-	NTConfig_UseFade = 			false;				// Set true to use Fade use fade. You can not use BOS and Fade!!!!
-	NTConfig_UseBOS = 			false;				// Set true to use Burst of Speed. You can not use BOS and Fade!!!!
-	NTConfig_Venom = 			false;				// Set true to use Venom
-
-	NTConfig_TrapSet = [271,271,271,276,276];			// Set 5 traps to cast in order.  Use this for all monsters (including Andariel).
-														// (261 - Charged Bolt : 262 - Wake of Fire : 271 - Lightning Sentry : 272 - Wake of Inferno : 276 - Death Sentry)
-
-	NTConfig_ActBossTrapSet = [271,271,271,271,271];	// Set 5 traps to cast in order for Act bosses (excluding Andariel).
-														// (261 - Charged Bolt : 262 - Wake of Fire : 271 - Lightning Sentry : 272 - Wake of Inferno : 276 - Death Sentry)
-
-	NTConfig_TrapWaitTimeForImmune = 150; 				// If NTConfig_AttackSkill is immune, delay time after casting traps to skip. or 0 to skip. (150 is good.)
-														// (If monster is being skipped before Shadow/Merc kills, set higher.)
-
-	NTConfig_TrapAttackPattern = 0; 					// Trap layout pattern.
-														// 0 - Quincunx(default) : 1 - Pentagram : 2 - X Axis(Horizontal) : 3 - Y Axis(Vertical)
+	NTConfig_UseFindItem = false; 						// Loot corpses of slain Monsters when clearing positions or areas?
+	NTConfig_BuyPotsIfLackOfMana = false; 				// Visit town if you lack enough mana to loot a corpse?
+	NTConfig_FindItemRange = 40; 						// Default range to check for corpses to loot when clearing positions or areas.
+	BarbSwitch = true; 									// Switch weapons to cast BO?
 
 }
