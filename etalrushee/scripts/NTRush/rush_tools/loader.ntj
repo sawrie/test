@@ -14,6 +14,7 @@ function NTMain() {
 	Include("libs/common/NTColorConverter.ntl");
 
 	NT_LoadConfig();
+	RegisterEvent(EVENT_GAMEMSG, chat);
 
 	if (!finished) {
 		RegisterEvent(EVENT_KEYDOWN, NT_KeyEvents);
@@ -148,4 +149,48 @@ function GetScriptLength() {
 		num++;
 	}
 	return num - 1;
+}
+
+function chat(msg, type)
+{
+	var rusheeName = RetrieveRusheeName();
+	
+	if(type == 0){
+		var _split = msg.split(":");
+		if(_split.length >= 1 && _split[1] != undefined){
+			var _sender = _split[0].substring(3, _split[0].length - 3);
+			var _msg = _split[1].substring(1);
+			if(_sender == rusheeName){
+				switch(_msg){
+					// case "I died I need a sec" :
+						// Print(COLOR_3 + "Waiting..");
+						// if(NTC_InTown()){
+							// NTTM_TownMove("stash");
+							// NTTM_TownMove("waypoint");
+							// for(i = 0; i < 14; i++){
+								// NTC_Delay(NTC_DELAY_FRAME);
+								// i++;
+							// }
+						// }
+						// else if(!NTC_InTown()){
+							// NTM_MakeTP(true);
+							// NTTM_TownMove("stash");
+							// NTTM_TownMove("waypoint");
+							// for(i = 0; i < 14; i++){
+								// NTC_Delay(NTC_DELAY_FRAME);
+								// i++;
+							// }						
+						// }
+						// break;
+				}
+			}
+		}
+	}
+}
+
+function RetrieveRusheeName() { //using Rugruth's NTR_RetrieveRushersName to get Rushee's Name
+	var leaderName="";
+	leaderName = NT_File("logs/messagecomands/rushbot-rushee.txt", 0);
+	
+	return leaderName;
 }
