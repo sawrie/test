@@ -75,6 +75,9 @@ function Questing(area)
 			break;
 			
 		case 40 : // ACT 2 ---------------------------------------------
+			if(NTC_InTown()){
+				NTR_CubeStaff();
+			}
 			if( NTC_InTown() && !LocationChecka2){
 				NTR_CheckLocation();
 				LocationChecka2 = true;
@@ -236,11 +239,10 @@ var i;
 						if(me.areaid == 40){
 							NTM_UsePortal("BluePortal", 64, NTConfig_Leader);
 						}
-						while(me.areaid == 64){
+						if(me.areaid == 64){
 							NTR_GetStaff();
+							NTC_Delay(250);
 							NTR_TakePortal();
-							NTC_Delay(500);
-							NTR_CubeStaff();
 						}						
 						break;
 
@@ -475,7 +477,7 @@ var i;
             }
         }
     }
-    else if(type == 4 && (msg.indexOf("weaken") != -1) && (msg.indexOf(NTConfig_Leader) != -1))
+    else if(type == 4 && ((msg.indexOf("weaken") != -1) || (msg.indexOf("timeout") != -1))&& (msg.indexOf(NTConfig_Leader) != -1))
     {
         NTC_Delay(750);
         ExitGame();

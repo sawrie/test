@@ -89,10 +89,10 @@ function NTR_GoRushee(area)
 }
 function NTR_HPCheck()
 {
-	var c = .8;
 	var checkHP;
 	var CurrentHP;
 	var p = .85;
+	var c = .75;
 	
 	if(!NTC_InTown() && me.hp < me.hpmax*p && !lifeChunked){
 		for(var i = 0; i < 6; i++){
@@ -140,9 +140,7 @@ function NTR_Heal(area)
 			
 		Print(COLOR_5 + "Checking Health..");
 		NTC_Delay(200);
-		Print(COLOR_5 + "Current Health " + "( " + COLOR_1 + me.hp + COLOR_5 + " )");
-		NTC_Delay(200);
-		Print(COLOR_11 + "Visiting Healer " + _area);
+		Print(COLOR_5 + "Current Health " + "( " + COLOR_1 + me.hp + COLOR_5 + " ) " + COLOR_11 + "Visiting Healer : " + _area);
 		
 		switch(area)
 		{		
@@ -478,7 +476,7 @@ function NTR_Death(area)
 function NTR_OpenQuest()
 {
 	NTC_Delay(300);
-	SetUIState(0x10, true);
+	SetUIState(0x0F, true);
 	NTC_Delay(800);
 	NTC_CancelOut(1);
 	return false;
@@ -601,7 +599,7 @@ function NTR_TalkJer()
 		}					
 	}
 	NTC_Delay(300);
-	if(me.GetQuest(14, 3)){
+	if(me.GetQuest(14, 3) && !me.GetQuest(14,4) && !me.GetQuest(14,5)){
 		NTR_TalkJer();
 		NTC_Delay(100);
 		return true;
@@ -826,7 +824,7 @@ function NTR_GetBook()
 			NTC_Delay(300);
 		}
 		if (_item.mode == 0){
-			Print(COLOR_8 + "Picked up the Book");
+			Print(COLOR_8 + "Picked up the " + _book + "!");
 			NTC_Delay(200);
 		}
 	}
@@ -942,7 +940,7 @@ function NTR_GetAmmy()
 		}
 		NTC_Delay(100);
 		if (_ammy.mode != 3 && _ammy.mode != 5){
-			Print(COLOR_8 + "Picked up the Ammy");
+			Print(COLOR_8 + "Picked up the Viper Amulet!");
 			NTC_Delay(200);
 			break;
 		}
@@ -974,7 +972,7 @@ function NTR_GetCube()
 		NTC_Delay(300);
 	}
 	if (_item.mode == 0){
-		Print(COLOR_8 + "Picked up the Cube");
+		Print(COLOR_8 + "Picked up the " + _cube + "!");
 		NTC_Delay(200);
 	}	
 	return false;
@@ -1027,7 +1025,7 @@ function NTR_GetStaff()
 		}
 		NTC_Delay(200);
 		if (_staff.mode != 3 && _staff.mode != 5){
-			Print(COLOR_8 + "Picked up the Staff");
+			Print(COLOR_8 + "Picked up Staff of Kings!");
 			NTC_Delay(300);
 			break;
 		}
@@ -1036,12 +1034,17 @@ function NTR_GetStaff()
 }
 function NTR_CubeStaff()
 {
-	if(me.areaid == 40){
+	var cube = me.GetItems(549);
+	var staff = me.GetItems(92);
+	var ammy = me.GetItems(521);
+	
+	if(me.areaid == 40 && staff.length > 0 && ammy.length > 0 && cube.length > 0){
 		Print(COLOR_5 + "Cubing Staff!");
 		NTR_MakeStaff();
 		NTR_GoCain();
 	}
-	return false;
+	else
+		return false;
 }
 function NTR_PlaceStaff() 
 {
@@ -1268,7 +1271,7 @@ function NTR_GetTome()
 		}
 		NTC_Delay(100);
 		if (_tome.mode != 3 && _tome.mode != 5){
-			Print(COLOR_8 + "Picked up Tome!");
+			Print(COLOR_8 + "Picked up the Tome!");
 			NTC_Delay(200);
 			break;
 		}
