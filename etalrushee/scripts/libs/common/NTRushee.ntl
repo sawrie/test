@@ -5,7 +5,7 @@ Any code not written by myself is listed in the credits in my thread.
 
 You can find any additional information @ www.projectetal.com/forums/index.php?threads/automated-rushee-release-v1.11071
 */
-
+var _npc;
 var lifeChunked = false;
 
 function NTR_CoverRushee(area)
@@ -15,7 +15,6 @@ function NTR_CoverRushee(area)
 	
 	while(_player.GetNext()){
 		if(_player.name !== me.name && _player.areaid === area){
-			//Print(C_DARK_GREEN + "Teleporting to " + _player.name);
 			TelePlayer();
 		}
 		break;
@@ -62,7 +61,7 @@ function NTR_GoRushee(area)
 		
 	while(_player.GetNext()){
 		if(_player.name !== me.name && _player.areaid === area){
-			Print(C_DARK_GREEN + "Teleporting to " + _player.name);
+			//Print(C_DARK_GREEN + "Teleporting to " + _player.name);
 			TelePlayer();
 			NTM_MakeTP();
 			NTC_Delay(300);
@@ -93,14 +92,14 @@ function NTR_HPCheck()
 	var c = .8;
 	var checkHP;
 	var CurrentHP;
-	var i = .85;
-	//We spam 5 times with 1 sec intervals -- still want to check if attacked again
-	if(!NTC_InTown() && me.hp < me.hpmax*i && !lifeChunked){
-		for(i = 0; i < 10; i++){
+	var p = .85;
+	
+	if(!NTC_InTown() && me.hp < me.hpmax*p && !lifeChunked){
+		for(var i = 0; i < 6; i++){
 			NTC_Delay(1000);
 			Say("I Need An Adult!");
 			i++;
-			if(i > 8){
+			if(i >= 5){
 				lifeChunked = true;
 				CurrentHP = me.hp;
 				checkHP = parseInt(me.hpmax/100*CurrentHP*c);
@@ -109,8 +108,8 @@ function NTR_HPCheck()
 			}
 		}
 	}
-	if(!NTC_InTown() && (CurrentHP < checkHP) && lifeChunked){
-		for(i = 0; i < 5; i++){
+	if(!NTC_InTown() && (me.hp < checkHP) && lifeChunked){
+		for(var i = 0; i < 5; i++){
 			NTC_Delay(1000);
 			Say("I Need An Adult!");
 			i++;
@@ -314,19 +313,6 @@ function NTR_Death(area)
 					NTC_Delay(800);
 					Say("I died I need a sec");
 					NTR_CheckLocation();
-					// NTC_Delay(800);
-					
-					// NTM_UsePortal("BluePortal", 49, NTConfig_Leader);
-						
-					// if(me.areaid == 49){
-						// NTC_Delay(300);
-						// NTR_GetBook();
-						// NTC_Delay(500);
-						// NTR_TakePortal();
-						// NTC_Delay(500);
-						// NTR_ReadBook();
-						// NTR_GoCain();
-					// }
 				}
 				break;
 			case 74 :
@@ -630,7 +616,9 @@ function NTR_TalkJer()
 				NTM_MoveTo(_npc.areaid, _npc.x, _npc.y);
 				NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _npc);
 				NTC_CancelMenus();
-				NTC_Delay(500);
+				NTC_Delay(200);
+				NTC_CancelOut(0);
+				NTC_Delay(200);
 				NTC_CancelOut(0);
 			}
          	if(NTT_DoInteract(_npc)){
@@ -657,7 +645,9 @@ function NTR_GoDrognan()
 				NTM_MoveTo(_npc.areaid, _npc.x, _npc.y);
 				NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _npc);
 				NTC_CancelMenus();
-				NTC_Delay(500);
+				NTC_Delay(300);
+				NTC_CancelOut(0);
+				NTC_Delay(200);
 				NTC_CancelOut(0);
 			}
 		}					
@@ -698,7 +688,7 @@ function NTR_TalkTyraelSpirit()
 				NTM_MoveTo(_npc.areaid, _npc.x, _npc.y);
 				NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _npc);
 				NTC_CancelMenus();
-				NTC_Delay(500);
+				NTC_Delay(300);
 				NTC_CancelOut(0);
 			}
 		}				
@@ -737,8 +727,10 @@ function NTR_TalkTyrael()
 				if(GetDistance(me, _npc) < 15){
 					NTM_MoveTo(_npc.areaid, _npc.x, _npc.y);
 					NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _npc);
+					NTC_CancelMenus();
+					NTC_Delay(200);
 					NTC_CancelOut(0);
-					NTC_Delay(500);
+					NTC_Delay(300);
 					NTC_CancelOut(0);
 				}
 			}
@@ -759,7 +751,11 @@ function NTR_GoTyrael()
 				if(GetDistance(me, _npc) < 15){
 					NTM_MoveTo(_npc.areaid, _npc.x, _npc.y);
 					NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _npc);
-					NTC_Delay(500);
+					NTC_Delay(200);
+					NTC_CancelMenus();
+					NTC_Delay(200);
+					NTC_CancelOut(0);
+					NTC_Delay(300);
 					NTC_CancelOut(0);
 					NTC_Delay(1000);//let portal open
 				}
@@ -782,9 +778,12 @@ function NTR_TalkAnya()
 		if(_anya){
 			NTM_MoveTo(_anya.areaid,_anya.x+2, _anya.y);  
 			NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _anya); 
-			NTC_Delay(500);
-			NTC_CancelOut(0); 
-			NTC_Delay(500);
+			NTC_Delay(200);
+			NTC_CancelMenus();
+			NTC_Delay(200);
+			NTC_CancelOut(0);
+			NTC_Delay(300);
+			NTC_CancelOut(0);
 		}
 	}
 	return false;
@@ -800,8 +799,11 @@ function NTR_TalkMalah()
 			if(GetDistance(me, _npc) < 15){
 				NTM_MoveTo(_npc.areaid, _npc.x, _npc.y);
 				NTC_DoClick(NTC_CLICK_LDOWN, NTC_SHIFT_NONE, _npc);
+				NTC_Delay(200);
 				NTC_CancelMenus();
-				NTC_Delay(500);
+				NTC_Delay(200);
+				NTC_CancelOut(0);
+				NTC_Delay(300);
 				NTC_CancelOut(0);
 			}
 		}				
@@ -1411,13 +1413,13 @@ function NTR_SSCheck()
 	var i;
 	var _soulStone = me.GetItems(551);		
 	for(i = 0 ; i < _soulStone.length ; i++){
-		if(_soulStone.length == 0){
+		if(_soulStone[0].itemloc == 0){
+			Print(COLOR_5 + "Soulstone in Inventory");
+		}
+		else{
 			Print(COLOR_1 + "Soulstone Missing!");
 			NTC_SendLogToOOG(NTC_LOG_COMMON, me.charname + ": " + COLOR_11 + "Soulstone Missing");		
 			NTR_GoCain();
-		}
-		if(_soulStone[0].itemloc == 0){
-			Print(COLOR_5 + "Soulstone in Inventory");
 		}
 	}
 	return false;
@@ -1637,6 +1639,13 @@ function GetLeaderUnit(name){
 		} while(_unit.GetNext());
 	}	
 	return false;
+}
+
+function NTR_RetrieveRusheeName() { //using Rugruth's NTR_RetrieveRushersName to get Rushee's Name
+	var rusheeName ="";
+	rusheeName = NT_File("logs/messagecomands/rushbot-rushee.txt", 0);
+	
+	return rusheeName;
 }
 
 function NTR_RetrieveRusherName() {

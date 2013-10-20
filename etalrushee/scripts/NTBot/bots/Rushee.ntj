@@ -251,7 +251,12 @@ var i;
 					case "Summoner up!" :
 						NTC_Delay(100);
 						if(me.areaid == 40){
-							NTM_UsePortal("BluePortal", 74, NTConfig_Leader);
+							if(!NTM_UsePortal("BluePortal", 74, NTConfig_Leader)){
+								NTC_Delay(300);
+								NTR_GoCain();
+								NTC_Delay(300);
+								NTM_UsePortal("BluePortal", 74, NTConfig_Leader);
+							}
 						}
 						break;
 
@@ -282,7 +287,12 @@ var i;
 					case "Duriel up!" :
 						if(me.areaid == 40){
 							NTC_CheckPlayer(NTConfig_Leader);
-							NTM_UsePortal("BluePortal", _leaderareaid, NTConfig_Leader);
+							if(!NTM_UsePortal("BluePortal", _leaderareaid, NTConfig_Leader)){
+								NTC_Delay(300);
+								NTR_GoCain();
+								NTC_Delay(300);
+								NTM_UsePortal("BluePortal", _leaderareaid, NTConfig_Leader);
+							}
 						}
 						NTR_PlaceStaff();
 						NTC_PingDelay(500);

@@ -2,6 +2,7 @@
 //## Written by goodstuff for Automated Rushee/Rusher ##
 //## Credits to Rugruth for using some of his code ;D ##
 //######################################################
+var rusheeName;
 
 function NTMain(){
 	Include("libs/common/NTCommon.ntl");
@@ -27,7 +28,7 @@ function GetPlayer() // using Rugruth's NTR_FindRusher() modified to get Rushee 
 	
 	do{
         NTC_Delay(200);
-		_rushee = RetrieveRusheeName();
+		_rushee = NTR_RetrieveRusheeName();
 		
 		_unit = GetPlayerUnit();
 		do{
@@ -47,8 +48,10 @@ function GetPlayer() // using Rugruth's NTR_FindRusher() modified to get Rushee 
 }
 
 function chat(msg, type)
-{
-	var rusheeName = RetrieveRusheeName();
+{	
+	if(rusheeName == null){
+		rusheeName = NTR_RetrieveRusheeName();
+	}
 	
 	if(type == 0){
 		var _split = msg.split(":");
@@ -72,12 +75,11 @@ function chat(msg, type)
 				}
 			}
 		}
-	}
-}
+	}	
+    else if(type == 4 && ((msg.indexOf("weaken") != -1) || (msg.indexOf("timeout") != -1))&& (msg.indexOf(rusheeName) != -1))
+    {
+        NTC_Delay(750);
+        ExitGame();
+    }
 
-function RetrieveRusheeName() { //using Rugruth's NTR_RetrieveRushersName to get Rushee's Name
-	var leaderName="";
-	leaderName = NT_File("logs/messagecomands/rushbot-rushee.txt", 0);
-	
-	return leaderName;
 }
