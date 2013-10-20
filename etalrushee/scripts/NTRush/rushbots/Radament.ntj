@@ -108,23 +108,6 @@ function NTMain()
 	
 	Movetobook();
 	
-	NTM_MakeTP();
-
-	NTA_ClearPosition(25);
-
-	Say("Get the book!");
-
-	while(NTC_IsQuesterIn()) {
-		NTC_TPGuard(10);
-		NTC_Delay(3000);
-		Say("Get the book!");
-		NTC_Delay(300);
-	}
-
-	while(!NTC_IsQuesterOut()) {
-		Delay(500);
-	}
-
 	NTSI_PickItems();
 
 	NTM_UsePortal("BluePortal", 40, me.charname);
@@ -134,11 +117,29 @@ function NTMain()
 	function Movetobook()
 	{
 		var _book = NTC_FindUnit(NTC_UNIT_ITEM, 552);
-		if(!_book){Say("Missed it bro"); return;}
-		if (_book.mode == 3 || _book.mode == 5){
-			NTM_MoveTo(me.areaid, _book.x, _book.y);
-		}	
-		NTC_PingDelay(100);	
+		if(!_book){Say("Missed it bro"); return false;}
+		else{
+			if (_book.mode == 3 || _book.mode == 5){
+				NTM_MoveTo(me.areaid, _book.x, _book.y);
+			}	
+			NTC_PingDelay(100);	
+			NTM_MakeTP();
+
+			NTA_ClearPosition(25);
+
+			Say("Get the book!");
+
+			while(NTC_IsQuesterIn()) {
+				NTC_TPGuard(10);
+				NTC_Delay(3000);
+				Say("Get the book!");
+				NTC_Delay(300);
+			}
+
+			while(!NTC_IsQuesterOut()) {
+				Delay(500);
+			}
+		}
 		return true;
 	}
 }
