@@ -209,16 +209,15 @@ function NT_LoadConfig()
 	//------------------------------------------------------------------------------
 	// *note must have attacks 1-4 set to something to have the bot use the trap settings below
 	//------------------------------------------------------------------------------
-	NTConfig_AttackSkill[0] = 0; 	// First skill. Maybe slow missiles
-	NTConfig_AttackSkill[1] = 0; 	// Primary skill to super unique/champion.
-	NTConfig_AttackSkill[2] = 0; 	// Primary untimed skill to super unique/champion.
-	NTConfig_AttackSkill[3] = 0; 	// Primary skill to others.
-	NTConfig_AttackSkill[4] = 0; 	// Primary untimed skill to others.
-	NTConfig_AttackSkill[5] = 0; 	// Secondary skill in case monster is immune to primary skill.
-	NTConfig_AttackSkill[6] = 0; 	// Secondary untimed skill.
-	NTConfig_AttackSkill[7] = 0; 	// Tertiary skill to everything else in case monster is immune to both primary and secondary.
-	NTConfig_AttackSkill[8] = 0;	// Tertiary untimed skill.
-	NTConfig_AttackSkill[9] = 0;	// Primary skill to boss (diablo/baal/meph/etc) Not immune to spells I guess.
+	NTConfig_AttackSkill[0] = -1;	// First skill. Set to 0 if you won't
+	NTConfig_AttackSkill[1] = 112;	// Primary skill to boss.
+	NTConfig_AttackSkill[2] = 113;	// Primary aura to boss. Set to 0 if you won't
+	NTConfig_AttackSkill[3] = 112;	// Primary skill to others.
+	NTConfig_AttackSkill[4] = 113;	// Primary aura to others. Set to 0 if you won't
+	NTConfig_AttackSkill[5] = -1;	// Secondary skill in case monster is immune to primary skill. Set to 0 if you won't
+	NTConfig_AttackSkill[6] = -1;	// Secondary aura. Set to 0 if you won't
+	NTConfig_AttackSkill[7] = -1;	// Tertiary skill in case monster is immune to primary skill. Set to 0 if you won't
+	NTConfig_AttackSkill[8] = -1;	// Tertiary aura. Set to 0 if you won't
 
 	prewavespot = [15092, 5040];						// Pre-Wave standing (X,Y) coordinates. (For Baal Scripts.)				
 
